@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   font-family: Arial;
+  --url: url("~/assets/slide-01-1920x640.jpg");
 }
 a, button, input{all: unset;}
 
@@ -17,10 +18,23 @@ a, button, input{all: unset;}
   padding-bottom: 5px;
   border-bottom: #d9d9d9 1px solid;
 }
-
+.line-s{
+  position: relative;
+  display: inline-block;
+}
+.line-s:after{
+  content: '';
+  position: absolute;
+  left: 50%; /* Center the line */
+  bottom: -5px; /* Adjust the vertical position */
+  width: 50px; /* Width of the underline */
+  height: 2px; /* Height of the underline */
+  background-color: #ff8600; /* Color of the underline */
+  transform: translateX(-50%); /* Center the line relative to the text */
+}
 
 /*HELPERS*/
-.my-row{
+.row{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -32,6 +46,31 @@ a, button, input{all: unset;}
 }
 .m-1{
   margin: 1em;
+}
+
+.cover{
+  /*BG*/
+  background-image: var(--url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; /*for dark*/
+}
+.dark{
+  position: relative;
+}
+.dark::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value for darkness */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+.dark:hover::before {
+  background-color: rgba(0, 0, 0, 0.35); /* Removes the dark overlay */
 }
 
 /*INPUT*/
@@ -50,6 +89,21 @@ input{
 }
 .btn:hover{
   filter: brightness(95%);
+}
+
+
+.btn-text{ font-weight: bold; }
+.btn-text{ text-decoration: underline #ff8600; }
+
+/*text*/
+h1{color: #434345}
+h2{color: #ff8600}
+h3{color: #434345}
+p{color: black}
+
+/*BODY*/
+.margin{
+  margin: 0px 10px;
 }
 
 /*HEADER*/
@@ -87,6 +141,118 @@ header{
 .btn-phone:hover{
   filter: brightness(95%);
   transition: filter 0.3s ease;
+}
+
+/*HERO*/
+#hero{
+  /*size*/
+  height: 300px;
+  /*.cover*/
+  /*.center*/
+  flex-direction: column;
+  gap: 10px;
+}
+#hero div{
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+}
+/*SECTIONS*/
+#sections{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+
+  margin-top: 10px;
+}
+#sections div{
+  height: 200px;
+}
+#sections div div{
+  /*.center*/
+  flex-direction: column;
+  position: relative; /* Position relative to stack above the overlay */
+  z-index: 2; /* Higher z-index to be above the overlay */
+
+  color: white;
+}
+#sections h1, h2{ all: unset; }
+#sections h1{font-size: 2.5em; font-weight: bold;}
+#sections h2{font-size: 1.5em;}
+
+/*OFFERS*/
+#offers{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+
+  margin-top: 10px;
+}
+#offers a div.cover{
+  height: 200px;
+}
+/*#offers a {display: inline-block;}*/
+#offers h2{
+  color: #ff8600;
+  font-size: 1.8em;
+  font-weight: bold;
+  /*margin-bottom: 100px;*/
+}
+.col{ display: flex; flex-direction: column; }
+#offers .col{
+  gap: 8px;
+  padding-top: 15px;
+}
+#offers h3{
+  color: #434345;
+  font-size: 1.3em;
+}
+#offers p{/*font-weight: bold;*/}
+
+#offers-wrap .btn{
+  font-size: 1.2em !important;
+  padding: 20px;
+
+  margin-top: 20px;
+}
+
+/*COSTUMERS*/
+#costumers{
+    display: grid;
+    gap: 15px;
+
+    margin-top: 10px;
+}
+.testimonial {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.customer-photo {
+  width: auto; /* Image width will be auto */
+  height: 100%; /* Height will match the testimonial text */
+  margin-right: 10px; /* Adjust space between image and text */
+}
+
+.testimonial-text {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns text and name vertically */
+  justify-content: space-between; /* Spaces out text and name */
+  flex-grow: 1; /* Ensures text box fills remaining space */
+}
+.testimonial-text div{
+  color: #434345;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.testimonial-text p{
+    color: #434345;
+    font-size: 1.2em;
 }
 
 /*FOOTER*/
@@ -153,6 +319,11 @@ footer{
     flex-direction: row;
     justify-content: space-between;
   }
+  #sections{grid-template-columns: 1fr 1fr 1fr 1fr;}
+  #offers{grid-template-columns: 1fr 1fr 1fr;}
+  #costumers{grid-template-columns: 1fr 1fr;}
+  #f-grid{grid-template-columns: 1fr 1fr 1fr;}
+
 
   /*HEADER*/
   /*icons*/
@@ -191,8 +362,8 @@ footer{
   .line-h:hover:after {
     width: 90%; /* Width on hover */
   }
-
 }
+
 
 /*BREAK POINTS*/
 .margin {

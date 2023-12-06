@@ -1,8 +1,110 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+﻿<div>
+        <div id="hero" class="center cover">
+            <div>Vyberte si svůj nový byt</div>
+            <form>
+                <input type="search" placeholder="Vyhledávat podle města...">
+                <button type="submit" class="btn">Hledat</button>
+            </form>
+        </div>
+    </div>
+<main class="margin">
+    <div id="sections">
+        <div class="cover dark" style="--url: url('~/assets/home-img-03-442-280.jpg');">
+            <div class="center">
+                <h1>Byty</h1>
+                <h2>32 nabídek</h2>
+            </div>
+        </div>
+        <div class="cover dark" style="--url: url('~/assets/home-img-04-442-280.jpg');">
+            <div class="center">
+                <h1>Luxusní</h1>
+                <h2>2 nabídek</h2>
+            </div>
+        </div>
+        <div class="cover dark" style="--url: url('~/assets/home-img-01-442-280.jpg');">
+            <div class="center">
+                <h1>Domy</h1>
+                <h2>16 nabídek</h2>
+            </div>
+        </div>
+        <div class="cover dark" style="--url: url('~/assets/home-img-02-442-280.jpg');">
+            <div class="center">
+                <h1>Chaty</h1>
+                <h2>7 nabídek</h2>
+            </div>
+        </div>
+    </div>
+    <div id="offers-wrap">
+        <div><h1 class="line-s center m-1">Naše nabídka</h1></div>
+        <div id="offers" class="fix">
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-07-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>AVA Nob Hill</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-05-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>SF Flat</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-06-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>WTO rooms</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-07-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>AVA Nob Hill</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-05-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>SF Flat</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Detail">
+                <div class="cover" style="--url: url('~/assets/home-img-06-370x250.jpg');"></div>
+                <div class="col">
+                    <h2>WTO rooms</h2>
+                    <h3>11 500,- / měsíc</h3>
+                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
+                </div>
+            </a>
+        </div>
+        <div class="center"><a href="" class="btn">ZOBRAZIT VŠE</a></div>
+    </div>
+    <div>
+        <div><h1 class="line-s center m-1">Zkušenosti zákazníků</h1></div>
+        <div id="costumers">
+            <div class="testimonial">
+                <img src="~/assets/user-lisa-evans-80x80.jpg" alt="Lisa Evans" class="customer-photo">
+                <div class="testimonial-text">
+                    <p>Thank you for your prompt response and the help that you gave me. You always have a quick solution to any problem. What an excellent level of customer service!</p>
+                    <div>Lisa Evans</div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <img src="~/assets/user-ethan-dean-80x80.jpg" alt="Lisa Evans" class="customer-photo">
+                <div class="testimonial-text">
+                    <p>I just want to thank you for your help. I was so pleased and grateful. Keep up the excellent work. Your site provides the best support I have ever encountered.</p>
+                    <div>Nicholas Lane</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

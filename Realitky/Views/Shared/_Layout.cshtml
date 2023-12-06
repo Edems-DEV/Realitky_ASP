@@ -4,45 +4,70 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Realitky</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Realitky.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Realitky</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+    <header class="margin">
+        <div id="contact" class="my-row line">
+            <div><a id="l-mail" href="mailto:info@realintense.org">info@realintense.org</a></div>
+            <div><a id="l-phone" href="tel:+420777666777">+420 777 666 777</a></div>
+        </div>
+        <div id="navigation">
+            <div class="center"><img src="~/assets/logo-dark.png"></div>
+            <div id="nav-links">
+                <a class="btn-phone line-h" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
+                <a class="btn-phone line-h" asp-area="" asp-controller="Home" asp-action="Catalog">KATALOG</a>
+                <a class="btn-phone line-h" asp-area="" asp-controller="Home" asp-action="Contact">KONTAKT</a>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <footer>
+        <div id="foot" class="margin">
+            <div id="f-grid">
+                <div id="news">
+                    <div>
+                        <h1>NEWSLETTER</h1>
+                        <p>Keep up with the latest company news and events.</p>
+                        <p>Enter your e-mail and subscribe to our newsletter.</p>
+                    </div>
+                    <form class="">
+                        <input type="search" placeholder="Vyhledávat svůj email ...">
+                        <button type="submit" class="btn">Odeslat</button>
+                    </form>
+                </div>
+                <div id="links">
+                    <h1>UŽITEČNÉ ODKAZY</h1>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Catalog">Byty pronájem</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Catalog">Byty prodej</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Catalog">Domy pronájem</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Catalog">Domy prodej</a></li>
                     </ul>
                 </div>
+                <div id="news-2">
+                    <h1>NOVINKY</h1>
+                    <div>
+                        <div>
+                            <h3>14. 5. 2016</h3>
+                            <p>Lorem Ipsum je demonstrativní výplňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. stoletíňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. století</p>
+                        </div>
+                        <div>
+                            <h3>14. 5. 2016</h3>
+                            <p>Lorem Ipsum je demonstrativní výplňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. stoletíňový text používaný v tiskařském a knihařském průmyslu. Lorem Ipsum je považováno za standard v této oblasti už od začátku 16. století</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Realitky - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span id="copyright" class="center">Copyright 2016 - Real estate</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
