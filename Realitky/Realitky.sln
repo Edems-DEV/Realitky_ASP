@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realitky", "Realitky.csproj", "{AC86DF50-E72B-4497-8F9B-95821F2227C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realitky", "Realitky.csproj", "{D3B6C868-C555-4011-82E1-AE205E9CB5F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC86DF50-E72B-4497-8F9B-95821F2227C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC86DF50-E72B-4497-8F9B-95821F2227C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC86DF50-E72B-4497-8F9B-95821F2227C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC86DF50-E72B-4497-8F9B-95821F2227C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B6C868-C555-4011-82E1-AE205E9CB5F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B6C868-C555-4011-82E1-AE205E9CB5F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B6C868-C555-4011-82E1-AE205E9CB5F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B6C868-C555-4011-82E1-AE205E9CB5F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2FE14E0F-7902-4F49-94C2-0A9FB34D0852}
+		SolutionGuid = {B708F3CA-E5C6-4C53-91F2-774AD168AD76}
 	EndGlobalSection
 EndGlobal
