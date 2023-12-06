@@ -20,6 +20,7 @@ namespace Realitky.Controllers
 
         public IActionResult Privacy()
         {
+            ViewData["page"] = "Admin";
             return View();
         }
 
