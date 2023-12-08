@@ -5,11 +5,10 @@ namespace Realitky.Controllers;
 
 public class AdminController : Controller
 {
-    public IActionResult Index()
-    {
-
-        return View();
-    }
+    // public IActionResult Index()
+    // {
+    //     // return View();
+    // }
 	public IActionResult Offers()
 	{
 		return View();
