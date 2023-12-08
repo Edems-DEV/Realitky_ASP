@@ -148,14 +148,13 @@ tr:nth-child(even){background-color: #fff3e5;}
 #seller-badges {display: none;}
 
 /*Ask*/
-#ask form{
-  display: grid;
-  grid-template-areas: "n n"
-                       "t e"
-                       "m m"
-                       "b b";
-  gap: 20px;
-
+#contact-form {
+    display: grid;
+    grid-template-areas: "n n"
+        "t e"
+        "m m"
+        "b b";
+    gap: 20px;
 }
 #ask-n{grid-area: n;}
 #ask-t{grid-area: t;}
@@ -204,6 +203,15 @@ tr:nth-child(even){background-color: #fff3e5;}
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+
+/*ADDED*/
+.my-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/*-----*/
 
 @media (min-width: 475px)  {  .margin {max-width: 475px;}  } /* xs */
 @media (min-width: 640px)  {  .margin {max-width: 640px;}
