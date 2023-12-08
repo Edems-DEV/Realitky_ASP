@@ -1,12 +1,22 @@
 ﻿using System.Buffers.Text;
 using Microsoft.EntityFrameworkCore;
+using Realitky.Models.Entity;
+using Type = Realitky.Models.Entity.Type;
 
 namespace WebApplication4.Models
 {
     public class MyContext : DbContext
     {
-        // public DbSet<User> Users { get; set; }
-
+        public DbSet<Gallery> Gallery { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        public DbSet<Parametrs> Parametrs { get; set; }
+        public DbSet<ParametrsOffers> ParametrsOffers { get; set; }
+        public DbSet<Region> Region { get; set; }
+        public DbSet<Request> Request { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Type> Type { get; set; }
+        public DbSet<User> Users { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string name = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String("RG9sYW5za3lBZGFt"));
