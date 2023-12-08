@@ -1,1 +1,9 @@
-﻿
+﻿@using Realitky.Models.Entity
+<h5>Test H5</h5>
+
+<div class="d-flex flex-row flex-wrap gap-3">
+    @foreach (Offer item in ViewBag.Offers)
+    {
+        <vc:offer-component offer="@item"></vc:offer-component>
+    }
+</div>

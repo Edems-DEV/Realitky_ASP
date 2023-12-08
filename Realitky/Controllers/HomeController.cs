@@ -1,17 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Realitky.Models;
 using System.Diagnostics;
+using WebApplication4.Models;
 
 namespace Realitky.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+    private MyContext context = new MyContext();
 
     public IActionResult Index() //Home
     {
@@ -19,6 +15,7 @@ public class HomeController : Controller
     }
     public IActionResult Catalog()
     {
+        this.ViewBag.Offers = this.context.Offers.ToList();
         return View();
     }
     public IActionResult Contact()

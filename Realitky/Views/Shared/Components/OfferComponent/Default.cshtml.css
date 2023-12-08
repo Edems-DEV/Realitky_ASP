@@ -1,0 +1,74 @@
+﻿/*Reset*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+a, button, input{all: unset;}
+
+/*HELPERS*/
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.m-1{
+    margin: 1em;
+}
+
+.cover{
+    /*BG*/
+    background-image: var(--url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; /*for dark*/
+}
+
+/*text*/
+h1{color: #434345}
+h2{color: #ff8600}
+h3{color: #434345}
+p{color: black}
+
+/*OFFERS*/
+#offers{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+    margin-top: 10px;
+}
+#offers a div.cover{
+    height: 200px;
+}
+/*#offers a {display: inline-block;}*/
+#offers h2{
+    color: #ff8600;
+    font-size: 1.8em;
+    font-weight: bold;
+    /*margin-bottom: 100px;*/
+}
+.col{ display: flex; flex-direction: column; }
+#offers .col{
+    gap: 8px;
+    padding-top: 15px;
+}
+#offers h3{
+    color: #434345;
+    font-size: 1.3em;
+}
+#offers p{/*font-weight: bold;*/}
+
+#offers-wrap .btn{
+    font-size: 1.2em !important;
+    padding: 20px;
+
+    margin-top: 20px;
+}
+
