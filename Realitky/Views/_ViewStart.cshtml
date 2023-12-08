@@ -1,3 +1,19 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var controller = HttpContextAccessor.HttpContext.GetRouteData().Values["controller"].ToString();
+
+    string layout = "";
+    switch (controller.ToLower())
+    {
+        case "admin":
+            layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+            break;
+        default:
+            layout = "~/Views/Shared/_Layout.cshtml"; // Default layout
+            break;
+    }
+
+    Layout = layout;
 }
