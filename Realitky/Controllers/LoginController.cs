@@ -37,7 +37,7 @@ public class LoginController : BaseController
             //         return RedirectToAction(a ?? "Index", c ?? "Admin");
             //         break;
             // }
-            this.HttpContext.Session.SetString("login", model.Username);
+            this.HttpContext.Session.SetInt32("login", user.Id); //single session => all properties (query in db) => more secured?
             return RedirectToAction(a ?? "Index", c ?? "Admin");
         }
 

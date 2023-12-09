@@ -11,7 +11,7 @@ public class AuthorizeAttribute : Attribute, IActionFilter
     {
         Controller controller = (Controller) context.Controller;
 
-        if (controller.HttpContext.Session.GetString("login") == null)
+        if (controller.HttpContext.Session.GetInt32("login") == null)
         {
             string c = controller.Request.RouteValues["controller"].ToString();
             string a = controller.Request.RouteValues["action"].ToString();
