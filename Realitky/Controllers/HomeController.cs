@@ -11,6 +11,12 @@ public class HomeController : Controller
 
     public IActionResult Index() //Home
     {
+        //Counters
+        @ViewBag.CountByt = this.context.Offers.Where(o => o.IdType == 0).Count();
+        @ViewBag.CountDum = this.context.Offers.Where(o => o.IdType == 1).Count();
+        @ViewBag.CountChata = this.context.Offers.Where(o => o.IdType == 2).Count();
+        @ViewBag.CountPozemek = this.context.Offers.Where(o => o.IdType == 3).Count();
+        
         return View();
     }
     public IActionResult Catalog()

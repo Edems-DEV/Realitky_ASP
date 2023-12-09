@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   font-family: Arial;
-  --url: url("~/assets/slide-01-1920x640.jpg");
+  --url: url("../../assets/slide-01-1920x640.jpg");
 }
 a, button, input{all: unset;}
 

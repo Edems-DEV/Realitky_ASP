@@ -1,4 +1,21 @@
-﻿<div>
+﻿@{
+    //sklonování
+
+    string Sklonovani(int count)
+    {
+        string text = $"{count.ToString()} ";
+        if (count == 1)
+            text += "nabídka";
+        else if (count > 1 && count < 5)
+            text += "nabídky";
+        else
+            text += "nabídek";
+
+        return text;
+    }
+}
+
+<div>
         <div id="hero" class="center cover">
             <div>Vyberte si svůj nový byt</div>
             <form>
@@ -11,26 +28,26 @@
     <div id="sections">
         <div class="cover dark" style="--url: url('../../assets/home-img-03-442-280.jpg');">
             <div class="center">
-                <h1>Byty</h1>
-                <h2>32 nabídek</h2>
+                <h1>Domy</h1>
+                <h2>@Sklonovani(ViewBag.CountByt)</h2>
             </div>
         </div>
         <div class="cover dark" style="--url: url('../../assets/home-img-04-442-280.jpg');">
             <div class="center">
-                <h1>Luxusní</h1>
-                <h2>2 nabídek</h2>
+                <h1>Byty</h1>
+                <h2>@Sklonovani(ViewBag.CountDum)</h2>
             </div>
         </div>
         <div class="cover dark" style="--url: url('../../assets/home-img-01-442-280.jpg');">
             <div class="center">
-                <h1>Domy</h1>
-                <h2>16 nabídek</h2>
+                <h1>Chaty</h1>
+                <h2>@Sklonovani(ViewBag.CountChata)</h2>
             </div>
         </div>
         <div class="cover dark" style="--url: url('../../assets/home-img-02-442-280.jpg');">
             <div class="center">
-                <h1>Chaty</h1>
-                <h2>7 nabídek</h2>
+                <h1>Pozemky</h1>
+                <h2>@Sklonovani(ViewBag.CountPozemek)</h2>
             </div>
         </div>
     </div>
