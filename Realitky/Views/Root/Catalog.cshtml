@@ -76,7 +76,7 @@
         var maxS = document.getElementById('f-size-max').value;
 
         // Construct the URL using MVC routing
-        var url = '@Url.Action("Catalog", "Home")';
+        var url = '@Url.Action("Catalog", "Root")';
         if (url.indexOf('?') === -1) url += '?'; // if no querystring
         else url += '&'; // if existing querystring
         if (type != "" && type != null) url += '&type=' + encodeURIComponent(type);

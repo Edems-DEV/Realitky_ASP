@@ -6,7 +6,7 @@ using WebApplication4.Models;
 
 namespace Realitky.Controllers;
 
-public class HomeController : Controller
+public class RootController : Controller
 {
     private MyContext context = new MyContext();
     
