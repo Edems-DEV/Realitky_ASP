@@ -7,7 +7,7 @@ public class AdminController : BaseController
 {
     public IActionResult Index()
     {
-	    return RedirectToAction("Index", "Login");
+	    return RedirectToAction("Offers");
     }
 	public IActionResult Offers()
 	{
