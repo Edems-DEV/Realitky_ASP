@@ -1,9 +1,60 @@
 ﻿@using Realitky.Models.Entity
-<h5>Test H5</h5>
+@using Type = Realitky.Models.Entity.Type
 
 <div class="d-flex flex-row flex-wrap gap-3">
+    <select id="f-type">
+            <option value="">Druh</option>
+            @foreach (Type item in ViewBag.Types)
+            {
+                <option value="@item.Id">@item.name</option>
+            }
+        </select>
+    <select id="f-region">
+        <option value="">Kraj</option>
+        @foreach (Region item in ViewBag.Regions)
+        {
+            <option value="@item.Id">@item.name</option>
+        }
+    </select>
+    <div class="d-flex flex-row flex-wrap gap-3">
+        <span>Cena:</span>
+        <input type="number" min="0" id="f-price-min" placeholder="0" >
+        <span>-</span>
+        <input type="number" min="0" id="f-price-max" placeholder="∞">
+    </div>
+    <div class="d-flex flex-row flex-wrap gap-3">
+        <span>Plocha:</span>
+        <input type="number" min="0" id="f-size-min" placeholder="0">
+        <span>-</span>
+        <input type="number" min="0" id="f-size-max" placeholder="∞">
+    </div>
+    <a id="search-button" class="btn">Search</a>
+</div>
+<div id="offers" class="d-flex flex-row flex-wrap gap-3" style="margin: 10px 20px;">
     @foreach (Offer item in ViewBag.Offers)
     {
         <vc:offer-component offer="@item"></vc:offer-component>
     }
 </div>
+
+<script>
+    document.getElementById('search-button').addEventListener('click', function() {
+        var type = document.getElementById('f-type').value;
+        var region = document.getElementById('f-region').value;
+        var minP = document.getElementById('f-price-min').value;
+        var maxP = document.getElementById('f-price-max').value;
+        var minS = document.getElementById('f-size-min').value;
+        var maxS = document.getElementById('f-size-max').value;
+
+        // Construct the URL using MVC routing
+        var url = '@Url.Action("Catalog", "Home")' + 
+                  '?type=' + encodeURIComponent(type) + 
+                  '&region=' + encodeURIComponent(region) + 
+                  '&minP=' + encodeURIComponent(minP) + 
+                  '&maxP=' + encodeURIComponent(maxP) + 
+                  '&minS=' + encodeURIComponent(minS) + 
+                  '&maxS=' + encodeURIComponent(maxS);
+
+        window.location.href = url;
+    });
+</script>
