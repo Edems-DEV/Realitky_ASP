@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Realitky.Models;
 using System.Diagnostics;
+using Realitky.Models.Entity;
 using WebApplication4.Models;
 
 namespace Realitky.Controllers;
@@ -8,8 +9,14 @@ namespace Realitky.Controllers;
 public class HomeController : Controller
 {
     private MyContext context = new MyContext();
+    
+    // public IActionResult GetOffers(int offset, int limit)
+    // {
+    //     var offers = context.Offers.OrderBy(o => o.Id).Skip(offset).Take(limit).ToList();
+    //     return Json(offers);
+    // }
 
-    public IActionResult Index() //Home
+    public IActionResult Index() //Home //int offset = 0, int limit = 2
     {
         //Counters
         @ViewBag.CountByt = this.context.Offers.Where(o => o.IdType == 0).Count();
@@ -18,6 +25,10 @@ public class HomeController : Controller
         @ViewBag.CountPozemek = this.context.Offers.Where(o => o.IdType == 3).Count();
         //Other
         @ViewBag.Offers = this.context.Offers.ToList();
+        // @ViewBag.Offers = this.context.Offers.Skip(offset).Take(limit).ToList();
+        // @ViewBag.Offset = offset;
+        // @ViewBag.Limit = limit;
+
         
         return View();
     }
