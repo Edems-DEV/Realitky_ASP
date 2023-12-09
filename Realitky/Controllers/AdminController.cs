@@ -18,6 +18,8 @@ public class AdminController : BaseController
 
 		var UserId = HttpContext.Session.GetInt32("login");
 		User user = context.Users.Where(x => x.Id == UserId).FirstOrDefault();
+		@ViewBag.User = user;
+		
 		if (user == null)
 			return;
 		if (user.IdRole >= 0)
@@ -35,6 +37,10 @@ public class AdminController : BaseController
 	public IActionResult Offers()
 	{
 		SetIsRole();
+		var UserId = HttpContext.Session.GetInt32("login");
+		@ViewBag.MyOffers = context.Offers.Where(x => x.Id == UserId).ToList();
+		if (@ViewBag.IsAdmin)
+			@ViewBag.AllOffers = context.Offers.ToList();
 		return View();
 	}
 	public IActionResult Users()

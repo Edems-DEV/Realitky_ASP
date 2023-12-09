@@ -1,9 +1,83 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Realitky.Models.Entity
 @{
+    int counter = 0;
 }
-<h1>@ViewBag.IsAdmin</h1>
-<h2>@ViewBag.IsDelaer</h2>
-<h3>@ViewBag.IsUser</h3>
-<div class="page-heading">
+<h1>Nábídky</h1>
+
+<h2>Vaše</h2>
+<div class="card table-responsive px-3">
+    <table class="table align-middle">
+        <thead>
+        <th scope="col">#</th>
+        <th scope="col">Nadpis</th>
+        <th scope="col" class="text-end">Cena</th>
+        <th scope="col" class="text-center align-middle">/m</th>
+        <th scope="col">Adresa</th>
+        <th scope="col" class="text-center align-middle">Aktivní</th>
+        <th scope="col" class="text-center align-middle">Akce</th>
+        </thead>
+        <tbody>
+        @{counter = 0;}
+        @foreach (Offer offer in @ViewBag.MyOffers)
+        {
+            counter++;
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@offer.title</td>
+                <td class="text-end">@offer.price</td>
+                <td class="text-center"><input class="align-middle" type="checkbox" onclick="return false;" @(offer.IsRent ? "checked" : "")></td>
+                <td>@offer.address</td>
+                <td class="text-center"><input class="text-center align-middle" type="checkbox" onclick="return false;" @(offer.IsVisible ? "checked" : "")></td>
+                <td class="text-center d-inline- g-3">
+                    <span><i class="bi bi-pencil-square"></i></span>
+                    <span><i class="bi bi-trash"></i></span>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+
+@if(@ViewBag.IsAdmin)
+{
+    <h2>Vše</h2>
+    <div class="card table-responsive px-3">
+        <table class="table align-middle">
+            <thead>
+            <th scope="col">#</th>
+            <th scope="col">Nadpis</th>
+            <th scope="col" class="text-end">Cena</th>
+            <th scope="col" class="text-center align-middle">/m</th>
+            <th scope="col">Adresa</th>
+            <th scope="col" class="text-center align-middle">Aktivní</th>
+            <th scope="col" class="text-center align-middle">Akce</th>
+            </thead>
+            <tbody>
+            @{counter = 0;}
+            @foreach (Offer offer in @ViewBag.AllOffers)
+            {
+                counter++;
+                <tr>
+                    <th scope="row">@counter</th>
+                    <td>@offer.title</td>
+                    <td class="text-end">@offer.price</td>
+                    <td class="text-center"><input class="align-middle" type="checkbox" onclick="return false;" @(offer.IsRent ? "checked" : "")></td>
+                    <td>@offer.address</td>
+                    <td class="text-center"><input class="text-center align-middle" type="checkbox" onclick="return false;" @(offer.IsVisible ? "checked" : "")></td>
+                    <td class="text-center d-inline- g-3">
+                        <span><i class="bi bi-pencil-square"></i></span>
+                        <span><i class="bi bi-trash"></i></span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<style>
+    i:hover {
+        cursor: pointer;
+        color: #dc3545;
+    }
+</style>
