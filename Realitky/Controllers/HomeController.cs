@@ -25,10 +25,10 @@ public class HomeController : Controller
         @ViewBag.CountPozemek = this.context.Offers.Where(o => o.IdType == 3).Count();
         //Other
         
+        var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
         if (type != 10)
-            @ViewBag.Offers = this.context.Offers.Where(o => o.IdType == type).ToList();
-        else
-            @ViewBag.Offers = this.context.Offers.ToList();
+            offersQuery = offersQuery.Where(o => o.IdType == type);
+        this.ViewBag.Offers = offersQuery.ToList();
         // @ViewBag.Offers = this.context.Offers.Skip(offset).Take(limit).ToList();
         // @ViewBag.Offset = offset;
         // @ViewBag.Limit = limit;
@@ -38,7 +38,7 @@ public class HomeController : Controller
     }
     public IActionResult Catalog(int type = 10, int region = 0, int minP = 0, int maxP = 0, int minS = 0, int maxS = 0)
     {
-        var offersQuery = this.context.Offers.AsQueryable();
+        var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
 
         // Apply filters only if they are not their default values
         if (type != 10)
