@@ -1,14 +1,14 @@
-﻿@using Realitky.Models.Entity
-@using Type = Realitky.Models.Entity.Type
+﻿@using Type = Realitky.Models.Entity.Type
+@using Realitky.Models.Entity
 
-<div class="d-flex flex-row flex-wrap gap-3">
+<div>
     <select id="f-type">
-            <option value="">Druh</option>
-            @foreach (Type item in ViewBag.Types)
-            {
-                <option value="@item.Id">@item.name</option>
-            }
-        </select>
+        <option value="">Druh</option>
+        @foreach (Type item in ViewBag.Types)
+        {
+            <option value="@item.Id">@item.name</option>
+        }
+    </select>
     <select id="f-region">
         <option value="">Kraj</option>
         @foreach (Region item in ViewBag.Regions)
@@ -16,27 +16,35 @@
             <option value="@item.Id">@item.name</option>
         }
     </select>
-    <div class="d-flex flex-row flex-wrap gap-3">
-            <span>Cena:</span>
-            <input type="number" min="0" id="f-price-min" placeholder="0" value="@(ViewBag.MinP != 0 ? ViewBag.MinP : "")">
-            <span>-</span>
-            <input type="number" min="0" id="f-price-max" placeholder="∞" value="@(ViewBag.MaxP != 0 ? ViewBag.MaxP : "")">
-        </div>
-    <div class="d-flex flex-row flex-wrap gap-3">
+    <div>
+        <span>Cena:</span>
+        <input type="number" min="0" id="f-price-min" placeholder="0" value="@(ViewBag.MinP != 0 ? ViewBag.MinP : "")">
+        <span>-</span>
+        <input type="number" min="0" id="f-price-max" placeholder="∞" value="@(ViewBag.MaxP != 0 ? ViewBag.MaxP : "")">
+    </div>
+    <div>
         <span>Plocha:</span>
         <input type="number" min="0" id="f-size-min" placeholder="0" value="@(ViewBag.MinS != 0 ? ViewBag.MinS : "")">
         <span>-</span>
         <input type="number" min="0" id="f-size-max" placeholder="∞" value="@(ViewBag.MaxS != 0 ? ViewBag.MaxS : "")">
     </div>
-    
+
     <a id="search-button" class="btn">Search</a>
 </div>
-<div id="offers" class="d-flex flex-row flex-wrap gap-3" style="margin: 10px 20px;">
+<div id="offers" style="margin: 10px 20px;">
     @foreach (Offer item in ViewBag.Offers)
     {
         <vc:offer-component offer="@item"></vc:offer-component>
     }
 </div>
+
+<style>
+    input[type="number"] {
+        width: 69px;
+        padding: 3px;
+        border: solid 1px #ccc;
+    }
+</style>
 
 <script>
      window.onload = function() {
