@@ -25,30 +25,38 @@
     </div>
 <main class="margin">
     <div id="sections">
-        <div class="cover dark" style="--url: url('../../assets/home-img-03-442-280.jpg');">
-            <div class="center">
-                <h1>Domy</h1>
-                <h2>@Sklonovani(ViewBag.CountByt)</h2>
+        <a href="@Url.Action("Index", "Home", new { type = 0 })">
+            <div class="cover dark" style="--url: url('../../assets/home-img-03-442-280.jpg');">
+                <div class="center">
+                    <h1>Domy</h1>
+                    <h2>@Sklonovani(ViewBag.CountByt)</h2>
+                </div>
             </div>
-        </div>
-        <div class="cover dark" style="--url: url('../../assets/home-img-04-442-280.jpg');">
-            <div class="center">
-                <h1>Byty</h1>
-                <h2>@Sklonovani(ViewBag.CountDum)</h2>
+        </a>
+        <a href="@Url.Action("Index", "Home", new { type = 1 })">
+            <div class="cover dark" style="--url: url('../../assets/home-img-04-442-280.jpg');">
+                <div class="center">
+                    <h1>Byty</h1>
+                    <h2>@Sklonovani(ViewBag.CountDum)</h2>
+                </div>
             </div>
-        </div>
-        <div class="cover dark" style="--url: url('../../assets/home-img-01-442-280.jpg');">
-            <div class="center">
-                <h1>Chaty</h1>
-                <h2>@Sklonovani(ViewBag.CountChata)</h2>
+        </a>
+        <a href="@Url.Action("Index", "Home", new { type = 2 })">
+            <div class="cover dark" style="--url: url('../../assets/home-img-01-442-280.jpg');">
+                <div class="center">
+                    <h1>Chaty</h1>
+                    <h2>@Sklonovani(ViewBag.CountChata)</h2>
+                </div>
             </div>
-        </div>
-        <div class="cover dark" style="--url: url('../../assets/home-img-02-442-280.jpg');">
-            <div class="center">
-                <h1>Pozemky</h1>
-                <h2>@Sklonovani(ViewBag.CountPozemek)</h2>
+        </a>
+        <a href="@Url.Action("Index", "Home", new { type = 3 })">
+            <div class="cover dark" style="--url: url('../../assets/home-img-02-442-280.jpg');">
+                <div class="center">
+                    <h1>Pozemky</h1>
+                    <h2>@Sklonovani(ViewBag.CountPozemek)</h2>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     <div id="offers-wrap">
         <div><h1 class="line-s center m-1">Naše nabídka</h1></div>
@@ -58,7 +66,7 @@
                 <vc:offer-component offer="@item"></vc:offer-component>
             }
         </div>
-        <div class="center"><a href="" class="btn">ZOBRAZIT VŠE</a></div>
+        <div class="center"><a href="@Url.Action("Index", "Home")" class="btn">ZOBRAZIT VŠE</a></div>
     </div>
     <div>
         <div><h1 class="line-s center m-1">Zkušenosti zákazníků</h1></div>

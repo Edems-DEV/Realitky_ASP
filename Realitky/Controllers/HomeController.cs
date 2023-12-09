@@ -16,7 +16,7 @@ public class HomeController : Controller
     //     return Json(offers);
     // }
 
-    public IActionResult Index() //Home //int offset = 0, int limit = 2
+    public IActionResult Index(int type = 10) //Home //int offset = 0, int limit = 2
     {
         //Counters
         @ViewBag.CountByt = this.context.Offers.Where(o => o.IdType == 0).Count();
@@ -24,7 +24,11 @@ public class HomeController : Controller
         @ViewBag.CountChata = this.context.Offers.Where(o => o.IdType == 2).Count();
         @ViewBag.CountPozemek = this.context.Offers.Where(o => o.IdType == 3).Count();
         //Other
-        @ViewBag.Offers = this.context.Offers.ToList();
+        
+        if (type != 10)
+            @ViewBag.Offers = this.context.Offers.Where(o => o.IdType == type).ToList();
+        else
+            @ViewBag.Offers = this.context.Offers.ToList();
         // @ViewBag.Offers = this.context.Offers.Skip(offset).Take(limit).ToList();
         // @ViewBag.Offset = offset;
         // @ViewBag.Limit = limit;
