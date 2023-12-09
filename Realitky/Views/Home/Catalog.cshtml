@@ -2,15 +2,24 @@
 @using Realitky.Models.Entity
 
 <div>
+
+    <select id="f-IsRent">
+        <option value="" hidden>Chci</option>
+        <option value="">-</option>
+        <option value="true">Pronájem</option>
+        <option value="false">Prodej</option>
+    </select>
     <select id="f-type">
-        <option value="">Druh</option>
+        <option value="" hidden>Typu</option>
+        <option value="">-</option>
         @foreach (Type item in ViewBag.Types)
         {
             <option value="@item.Id">@item.name</option>
         }
     </select>
     <select id="f-region">
-        <option value="">Kraj</option>
+        <option value="" hidden>v kraji</option>
+        <option value="">-</option>
         @foreach (Region item in ViewBag.Regions)
         {
             <option value="@item.Id">@item.name</option>
