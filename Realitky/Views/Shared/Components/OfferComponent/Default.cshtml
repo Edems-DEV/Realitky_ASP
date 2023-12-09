@@ -2,18 +2,18 @@
 @model Realitky.Models.Entity.Offer
 
 @{
-    string price = Convert.ToString(@ViewBag.Offer.price);
+    string price = @ViewBag.Offer.price.ToString("N0");
+    
+    //IsRent
     if (@ViewBag.Offer.IsRent){ price += ",- / měsíc"; }
     else { price += " Kč";}
 }
 
-<div id="offers">
 <a asp-area="" asp-controller="Home" asp-action="Detail">
-    <div class="cover" style="--url: url('../../assets/home-img-05-370x250.jpg');"></div>
+    <div class="cover" style="--url: url('../../assets/@ViewBag.Offer.thumbnail');"></div>
     <div class="col">
         <h2>@ViewBag.Offer.title</h2>
         <h3>@price</h3>
         <p>@ViewBag.Offer.summary</p>
     </div>
 </a>
-</div>

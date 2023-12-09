@@ -1,9 +1,8 @@
-﻿@{
-    //sklonování
-
+﻿@using Realitky.Models.Entity
+@{
     string Sklonovani(int count)
     {
-        string text = $"{count.ToString()} ";
+        string text = $"{count.ToString("N0")} ";
         if (count == 1)
             text += "nabídka";
         else if (count > 1 && count < 5)
@@ -54,54 +53,10 @@
     <div id="offers-wrap">
         <div><h1 class="line-s center m-1">Naše nabídka</h1></div>
         <div id="offers" class="fix">
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-07-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>AVA Nob Hill</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-05-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>SF Flat</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-06-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>WTO rooms</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-07-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>AVA Nob Hill</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-05-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>SF Flat</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
-            <a asp-area="" asp-controller="Home" asp-action="Detail">
-                <div class="cover" style="--url: url('../../assets/home-img-06-370x250.jpg');"></div>
-                <div class="col">
-                    <h2>WTO rooms</h2>
-                    <h3>11 500,- / měsíc</h3>
-                    <p>AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community. AVA Nob Hill includes studios and 1 and 2 bedroom apartments that feature an urban-inspired design that extends beyond your walls and throughout the entire community.</p>
-                </div>
-            </a>
+            @foreach (Offer item in ViewBag.Offers)
+            {
+                <vc:offer-component offer="@item"></vc:offer-component>
+            }
         </div>
         <div class="center"><a href="" class="btn">ZOBRAZIT VŠE</a></div>
     </div>

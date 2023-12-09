@@ -16,6 +16,8 @@ public class HomeController : Controller
         @ViewBag.CountDum = this.context.Offers.Where(o => o.IdType == 1).Count();
         @ViewBag.CountChata = this.context.Offers.Where(o => o.IdType == 2).Count();
         @ViewBag.CountPozemek = this.context.Offers.Where(o => o.IdType == 3).Count();
+        //Other
+        @ViewBag.Offers = this.context.Offers.ToList();
         
         return View();
     }
