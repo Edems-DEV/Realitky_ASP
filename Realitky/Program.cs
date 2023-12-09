@@ -3,6 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor(); //layouts
+builder.Services.AddSession(); //login
 
 var app = builder.Build();
 
@@ -16,6 +17,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession(); //login
 
 app.MapControllerRoute(
     name: "root",

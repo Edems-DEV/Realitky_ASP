@@ -2,12 +2,13 @@
 
 namespace Realitky.Controllers;
 
-public class AdminController : Controller
+[Authorize]
+public class AdminController : BaseController
 {
-    // public IActionResult Index()
-    // {
-    //     // return View();
-    // }
+    public IActionResult Index()
+    {
+	    return RedirectToAction("Index", "Login");
+    }
 	public IActionResult Offers()
 	{
 		return View();
@@ -21,11 +22,6 @@ public class AdminController : Controller
 		return View();
 	}
 	public IActionResult Parameters()
-	{
-		return View();
-	}
-	/*--------------------------------*/
-	public IActionResult Login()
 	{
 		return View();
 	}
