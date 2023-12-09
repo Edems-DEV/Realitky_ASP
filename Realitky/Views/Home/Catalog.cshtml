@@ -17,17 +17,18 @@
         }
     </select>
     <div class="d-flex flex-row flex-wrap gap-3">
-        <span>Cena:</span>
-        <input type="number" min="0" id="f-price-min" placeholder="0" >
-        <span>-</span>
-        <input type="number" min="0" id="f-price-max" placeholder="∞">
-    </div>
+            <span>Cena:</span>
+            <input type="number" min="0" id="f-price-min" placeholder="0" value="@(ViewBag.MinP != 0 ? ViewBag.MinP : "")">
+            <span>-</span>
+            <input type="number" min="0" id="f-price-max" placeholder="∞" value="@(ViewBag.MaxP != 0 ? ViewBag.MaxP : "")">
+        </div>
     <div class="d-flex flex-row flex-wrap gap-3">
         <span>Plocha:</span>
-        <input type="number" min="0" id="f-size-min" placeholder="0">
+        <input type="number" min="0" id="f-size-min" placeholder="0" value="@(ViewBag.MinS != 0 ? ViewBag.MinS : "")">
         <span>-</span>
-        <input type="number" min="0" id="f-size-max" placeholder="∞">
+        <input type="number" min="0" id="f-size-max" placeholder="∞" value="@(ViewBag.MaxS != 0 ? ViewBag.MaxS : "")">
     </div>
+    
     <a id="search-button" class="btn">Search</a>
 </div>
 <div id="offers" class="d-flex flex-row flex-wrap gap-3" style="margin: 10px 20px;">
@@ -38,6 +39,17 @@
 </div>
 
 <script>
+     window.onload = function() {
+        setSelectedValue('f-type', '@ViewBag.Type', 10);
+        setSelectedValue('f-region', '@ViewBag.Region', 0);
+    };
+    function setSelectedValue(selectId, value, def) {
+        var select = document.getElementById(selectId);
+        if (select && value)
+            if (value != def)
+                select.value = value;
+    }
+
     document.getElementById('search-button').addEventListener('click', function() {
         var type = document.getElementById('f-type').value;
         var region = document.getElementById('f-region').value;
@@ -47,13 +59,15 @@
         var maxS = document.getElementById('f-size-max').value;
 
         // Construct the URL using MVC routing
-        var url = '@Url.Action("Catalog", "Home")' + 
-                  '?type=' + encodeURIComponent(type) + 
-                  '&region=' + encodeURIComponent(region) + 
-                  '&minP=' + encodeURIComponent(minP) + 
-                  '&maxP=' + encodeURIComponent(maxP) + 
-                  '&minS=' + encodeURIComponent(minS) + 
-                  '&maxS=' + encodeURIComponent(maxS);
+        var url = '@Url.Action("Catalog", "Home")';
+        if (url.indexOf('?') === -1) url += '?'; // if no querystring
+        else url += '&'; // if existing querystring
+        if (type != "" && type != null) url += '&type=' + encodeURIComponent(type);
+        if (region != "" && type != null) url += '&region=' + encodeURIComponent(region);
+        if (minP != "" && type != null) url += '&minP=' + encodeURIComponent(minP);
+        if (maxP != "" && type != null) url += '&maxP=' + encodeURIComponent(maxP);
+        if (minS != "" && type != null) url += '&minS=' + encodeURIComponent(minS);
+        if (maxS != "" && type != null) url += '&maxS=' + encodeURIComponent(maxS);
 
         window.location.href = url;
     });
