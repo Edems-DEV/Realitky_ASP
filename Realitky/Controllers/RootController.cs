@@ -97,7 +97,13 @@ public class RootController : BaseController
     [HttpPost]
     public IActionResult Detail(Request request)
     {
-        this.context.Request.Add(request);
+        Request db = new Request();
+        db.IdOffer = request.IdOffer;
+        db.email = request.email;
+        db.name = request.name;
+        db.phone = request.phone;
+        db.text = request.text;
+        this.context.Request.Add(db);
         this.context.SaveChanges();
 
         return RedirectToAction("Index");
