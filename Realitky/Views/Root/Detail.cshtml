@@ -1,4 +1,14 @@
-﻿<main class="margin">
+﻿@using Realitky.Models.Entity
+@{
+    Offer offer = @ViewBag.Offer;
+    
+    string price = @ViewBag.Offer.price.ToString("N0");
+    if (@ViewBag.Offer.IsRent){ price += ",- / měsíc"; }
+    else { price += " Kč";}
+    
+    string isRent = offer.IsRent ? "pronájem" : "prodej";
+}
+<main class="margin">
     <div class="margin-2">
         <div id="preview">
             <image id="pre-selected" src="./../../assets/home-img-03-442-280.jpg" />
@@ -16,12 +26,12 @@
         <div id="properties">
             <div id="prop-R" class="my-col">
                 <div class="l-mb">
-                    <h1>Prodej bytu 260m² s pozemkem 108 m²</h1>
-                    <h2>Mezilesí, Praha 9 - Prosek</h2>
+                    <h1>@offer.title</h1>
+                    <h2>@offer.address</h2>
                 </div>
                 <div class="l-mb my-col">
-                    <div id="p-price">6 995 000 Kč</div>
-                    <div id="p-label">za nemovitost</div>
+                    <div id="p-price">@price</div>
+                    <div id="p-label">za @isRent</div>
                 </div>
             </div>
             <div id="prop-L" class="my-row">
@@ -34,15 +44,7 @@
         </div>
         <div>
             <p id="description">
-                Exkluzivně nabízíme prostorný, výborně řešený byt 3+1/L o celkové výměře 81 m2 (včetně lodžie plus sklep), který se nachází ve 4.NP zatepleného zrekonstruovaného domu, v příjemné a klidné lokalitě Praha 9 – Horní Počernice.<br>
-                Byt má zděnou koupelnu s vanou a samostatné WC, vstupní předsíň, dvě ložnice o výměře 12,6 m2 a 12,5 m2, obývací pokoj 22 m2 a kuchyň s jídelnou o výměře 12,4 m2. Na jižně orientovanou lodžii je vstup z obývacího pokoje a je z ní hezký výhled do otevřeného prostoru a na dětské hřiště. Ložnice jsou orientované na severní stranu.<br>
-                Na podlaze je dlažba, laminátová plovoucí podlaha a koberec, okna jsou plastová se žaluziemi.<br>
-                Byt je vybaven kuchyňskou linkou na míru s vestavěnou elektrickou troubou a sklokeramickou varnou deskou, vestavěnými skříněmi v předsíni a v ložnici. Další vybavení bytu může po dohodě také zůstat.<br>
-                K bytu náleží sklepní kóje cca 4 m2 a lze využívat kočárkárnu/kolárnu umístěnou v přízemí domu.<br>
-                Měsíční poplatky jsou pro čtyřčlennou rodinu cca 5 300,- včetně fondu oprav, který je ve výši 1 000,-Kč. Výborně fungující SVJ je pouze jeden vchod domu o jedenácti bytových jednotkách. SVJ není zatíženo žádným úvěrem.<br>
-                Poloha zrekonstruovaného zatepleného panelového domu je velice výhodná. Přímo u domu je Penny Market a lékárna, v pěším dosahu je pak veškerá občanská vybavenost – MŠ, ZŠ, SOŠ, lékaři, obchody, restaurace, divadlo, několik dětských hřišť a sportovišť. K větším procházkám a sportovnímu vyžití Vás naláká Klánovický les. Stanice metra B – Černý Most je vzdálena jednu cca 1,2 KM od domu a na metro se tak můžete dostat i pěšky nebo pohodlně dojet autobusem za 3 minuty. <br>
-                Nemovitost doporučuji pro pohodlné, klidné rodinné bydlení.
-                Osobní vlastnictví s možností financování hypotékou, kterou Vám rádi pomůžeme vyřídit.
+                @offer.body
             </p>
             <div id="tables">
                 <table class="info-table">
@@ -93,27 +95,7 @@
             </div>
         </div>
         <div id="contact2">
-            <div id="seller">
-                <h1>Kontaktujte prodejce</h1>
-                <div id="seller-card" class="my-row">
-                    <img src='./../../assets/user-lisa-evans-80x80.jpg'>
-                    <div class="my-col">
-                        <h2>Ing. Jarmila Vostrá</h2>
-                        <a id="i-mail" href="mailto:jarmila@vostra.cz">jarmila@vostra.cz</a>
-                        <a id="i-tel" href="tel:+420666777888">+420 666 777 888</a>
-                    </div>
-                </div>
-                <div id="seller-badges" class="my-row">
-                    <div class="my-col">
-                        <img src="./../../assets/badge-1.png" sizes="">
-                        <span>Makléř roku<br>2020</span>
-                    </div>
-                    <div class="my-col">
-                        <img src="./../../assets/bedge-2.png">
-                        <span>Cena zákazníků<br>2021</span>
-                    </div>
-                </div>
-            </div>
+            <vc:dealer-component user="@ViewBag.Dealer"></vc:dealer-component>
             <div id="ask">
                 <h1>Napište nám, ozveme se</h1>
                 <form method="post">

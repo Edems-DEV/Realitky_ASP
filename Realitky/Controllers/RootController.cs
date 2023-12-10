@@ -76,9 +76,23 @@ public class RootController : BaseController
         return View();
     }
     /*--------------------------------*/
-    public IActionResult Detail()
+    public IActionResult Detail(int id)
     {
+        Offer offer = this.context.Offers.Find(id);
+        User dealer = this.context.Users.Find(offer.IdDealer);
+        
+        this.ViewBag.Offer = offer;
+        this.ViewBag.Dealer = dealer;
+        
         return View();
+    }
+    [HttpPost]
+    public IActionResult Detail(Request request)
+    {
+        this.context.Request.Add(request);
+        this.context.SaveChanges();
+
+        return RedirectToAction("Index");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
