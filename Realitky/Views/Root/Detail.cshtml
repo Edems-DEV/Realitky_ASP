@@ -16,17 +16,19 @@
 <main class="margin">
     <div class="margin-2">
         <div id="preview">
-            <image id="pre-selected" src="./../../assets/home-img-03-442-280.jpg" />
-            <div id="pre-grid">
-                <div class="cover" style="--url: url('./../../assets/home-img-01-442-280.jpg');"></div>
-                <div class="cover" style="--url: url('./../../assets/home-img-02-442-280.jpg');"></div>
-                <div class="cover" style="--url: url('./../../assets/home-img-04-442-280.jpg');"></div>
-                <div class="cover" style="--url: url('./../../assets/home-img-05-370x250.jpg');"></div>
-                <div class="cover" style="--url: url('./../../assets/home-img-06-370x250.jpg');"></div>
-                <a href="" id="pre-more" class="cover dark center" style="--url: url('./../../assets/home-img-07-370x250.jpg');">
-                    <span>dalších 23 fotek</span>
-                </a>
-            </div>
+            @if (offer.Gallery.Any())
+            {
+                <image id="pre-selected" src="./../../assets/@offer.Gallery[0].path"/>
+                <div id="pre-grid">
+                    @foreach (var image in offer.Gallery.Skip(1))
+                    {
+                        <div class="cover" style="--url: url('./../../assets/@image.path');"></div>
+                        @* <a href="" id="pre-more" class="cover dark center" style="--url: url('./../../assets/home-img-07-370x250.jpg');"> *@
+                        @*     <span>dalších 23 fotek</span> *@
+                        @* </a> *@
+                    }
+                </div>
+            }
         </div>
         <div id="properties">
             <div id="prop-R" class="my-col">

@@ -82,13 +82,12 @@ public class RootController : BaseController
         Offer offer = context.Offers
             .Include(o => o.ParametrsOffers)
             .ThenInclude(po => po.Parametr)
+            .Include(o => o.Gallery) // Include the Gallery entities
             .FirstOrDefault(o => o.Id == id);
         User dealer = this.context.Users.Find(offer.IdDealer);
         
         this.ViewBag.Offer = offer;
         this.ViewBag.Dealer = dealer;
-        
-       
         
         return View();
     }
