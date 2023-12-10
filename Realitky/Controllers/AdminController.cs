@@ -46,21 +46,31 @@ public class AdminController : BaseController
 	public IActionResult Users()
 	{
 		SetIsRole();
+		if (@ViewBag.IsAdmin) //replace with admin atribut
+			@ViewBag.AllUsers = context.Users.ToList();
 		return View();
 	}
 	public IActionResult Requests()
 	{
 		SetIsRole();
+		var UserId = HttpContext.Session.GetInt32("login");
+		@ViewBag.MyRequests = context.Request.Where(x => x.Id == UserId).ToList();
+		if (@ViewBag.IsAdmin)
+			@ViewBag.AllRequests = context.Request.ToList();
 		return View();
 	}
 	public IActionResult Parameters()
 	{
 		SetIsRole();
+		if (@ViewBag.IsAdmin) //replace with admin atribut
+			@ViewBag.AllParameters = context.Parametrs.ToList(); //link apperinces
 		return View();
 	}
 	public IActionResult Profile()
 	{
 		SetIsRole();
+		var UserId = HttpContext.Session.GetInt32("login");
+		@ViewBag.User = context.Users.Find(UserId);
 		return View();
 	}
 }

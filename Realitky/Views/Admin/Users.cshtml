@@ -1,5 +1,45 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Realitky.Models.Entity
 @{
+    int counter = 0;
 }
+<h1>Uživatelé</h1>
+@if(@ViewBag.IsAdmin)
+{
+    <div class="card table-responsive px-3">
+        <table class="table align-middle">
+            <thead>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Jméno</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Telefon</th>
+            <th scope="col" class="text-center align-middle">Akce</th>
+            </thead>
+            <tbody>
+            @{counter = 0;}
+            @foreach (User user in @ViewBag.AllUsers)
+            {
+                counter++;
+                <tr>
+                    <th scope="row">@counter</th>
+                    <td>@user.username</td>
+                    <td>@user.name</td>
+                    <td>@user.email</td>
+                    <td>@user.phone</td>
+                    @* <td>@user.IdRole</td> *@
+                    <td class="text-center d-inline- g-3">
+                        <span><i class="bi bi-pencil-square"></i></span>
+                        <span><i class="bi bi-trash"></i></span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<style>
+    i:hover {
+        cursor: pointer;
+        color: #dc3545;
+    }
+</style>

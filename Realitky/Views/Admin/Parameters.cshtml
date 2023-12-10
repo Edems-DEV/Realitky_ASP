@@ -1,1 +1,39 @@
-﻿
+﻿@using Realitky.Models.Entity
+@{
+    int counter = 0;
+}
+<h1>Parametry</h1>
+
+@if(@ViewBag.IsAdmin)
+{
+    <h2 style="margin-top: 15px">Vše</h2>
+    <div class="card table-responsive px-3">
+        <table class="table align-middle">
+            <thead>
+            <th scope="col">#</th>
+            <th scope="col">Parametr</th>
+            </thead>
+            <tbody>
+            @{counter = 0;}
+            @foreach (Parametrs parameter in @ViewBag.AllParameters)
+            {
+                counter++;
+                <tr>
+                    <th scope="row">@counter</th>
+                    <td>@parameter.name</td>
+                    <td class="text-center d-inline- g-3">
+                        <span><i class="bi bi-pencil-square"></i></span>
+                        <span><i class="bi bi-trash"></i></span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<style>
+    i:hover {
+        cursor: pointer;
+        color: #dc3545;
+    }
+</style>
