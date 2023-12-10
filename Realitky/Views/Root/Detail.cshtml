@@ -76,7 +76,20 @@
             </div>
         </div>
         <div id="contact2">
-            <vc:dealer-component user="@ViewBag.Dealer"></vc:dealer-component>
+            <div id="seller">
+                <h1>Kontaktujte prodejce</h1>
+                <vc:dealer-component user="@ViewBag.Dealer"></vc:dealer-component>
+                <div id="seller-badges" class="my-row">
+                    <div class="my-col">
+                        <img src="./../../assets/badge-1.png" sizes="">
+                        <span>Makléř roku<br>2020</span>
+                    </div>
+                    <div class="my-col">
+                        <img src="./../../assets/bedge-2.png">
+                        <span>Cena zákazníků<br>2021</span>
+                    </div>
+                </div>
+            </div>
             <div id="ask">
                 <h1>Napište nám, ozveme se</h1>
                 <form method="post" id="this-form">

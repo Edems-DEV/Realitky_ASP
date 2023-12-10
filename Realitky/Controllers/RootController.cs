@@ -74,6 +74,9 @@ public class RootController : BaseController
     }
     public IActionResult Contact()
     {
+        var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
+        @ViewBag.Dealers = this.context.Users.Where(u => u.IdRole == 1).ToList();
+        
         return View();
     }
     /*--------------------------------*/

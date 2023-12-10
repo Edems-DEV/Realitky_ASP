@@ -2,24 +2,14 @@
 @{
     User dealer = this.ViewBag.Dealer;
 }
+
 <div id="seller">
-    <h1>Kontaktujte prodejce</h1>
     <div id="seller-card" class="my-row">
         <img src='./../../assets/@dealer.avatar'>
         <div class="my-col">
             <h2>@dealer.name</h2>
             <a id="i-mail" href="mailto:@dealer.email">@dealer.email</a>
             <a id="i-tel" href="tel:@dealer.phone">@dealer.phone</a>
-        </div>
-    </div>
-    <div id="seller-badges" class="my-row">
-        <div class="my-col">
-            <img src="./../../assets/badge-1.png" sizes="">
-            <span>Makléř roku<br>2020</span>
-        </div>
-        <div class="my-col">
-            <img src="./../../assets/bedge-2.png">
-            <span>Cena zákazníků<br>2021</span>
         </div>
     </div>
 </div>
