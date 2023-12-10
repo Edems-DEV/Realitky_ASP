@@ -147,22 +147,7 @@ tr:nth-child(even){background-color: #fff3e5;}
 #seller-badges .my-col{align-items: center;}
 #seller-badges {display: none;}
 
-/*Ask*/
 
-#ask-n{grid-area: n;}
-#ask-t{grid-area: t;}
-#ask-e{grid-area: e;}
-#ask-m{grid-area: m;}
-#ask-b{grid-area: b;}
-
-#ask input:not(#ask-b), #ask textarea{
-  border: 1px solid #878787;
-  padding: 10px;
-  border-radius: 0px;
-}
-#ask textarea{resize: none; height: 150px;}
-#ask-b{justify-self: center; border-radius: 5px}
-#contact2{padding-bottom: 30px;}
 
 /*MAP*/
 #map, #map *{
