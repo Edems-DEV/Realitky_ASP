@@ -15,4 +15,5 @@ public class Offer
     public string address {get;set;}
     public int IdDealer {get;set;}
     public bool IsVisible {get;set;}
+    public virtual List<ParametrsOffers> ParametrsOffers { get; set; }
 }

@@ -10,7 +10,7 @@ namespace WebApplication4.Models
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Parametrs> Parametrs { get; set; }
-        // public DbSet<ParametrsOffers> ParametrsOffers { get; set; }
+        public DbSet<ParametrsOffers> ParametrsOffers { get; set; }
         public DbSet<Region> Region { get; set; }
         public DbSet<Request> Request { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -24,6 +24,24 @@ namespace WebApplication4.Models
                                     $"user={name};" +
                                     "password=123456;" +
                                     "SslMode=none");
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Define composite key for ParametrOffer
+            modelBuilder.Entity<ParametrsOffers>()
+                .HasKey(po => new { po.IdOffer, po.IdParametr });
+
+            // Configure the many-to-many relationship
+            modelBuilder.Entity<ParametrsOffers>()
+                .HasOne(po => po.Offer)
+                .WithMany(b => b.ParametrsOffers)
+                .HasForeignKey(po => po.IdOffer);
+
+            modelBuilder.Entity<ParametrsOffers>()
+                .HasOne(po => po.Parametr)
+                .WithMany(c => c.ParametrsOffers)
+                .HasForeignKey(po => po.IdParametr);
         }
     }
 }

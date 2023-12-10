@@ -7,6 +7,11 @@
     else { price += " Kč";}
     
     string isRent = offer.IsRent ? "pronájem" : "prodej";
+
+    List<ParametrsOffers> x = offer.ParametrsOffers;
+    int middleIndex = (x.Count + 1) / 2;
+    var leftParam = x.GetRange(0, middleIndex);
+    var rightParam = x.GetRange(middleIndex, x.Count - middleIndex);
 }
 <main class="margin">
     <div class="margin-2">
@@ -48,49 +53,23 @@
             </p>
             <div id="tables">
                 <table class="info-table">
-                    <tr>
-                        <th>Konstrukce budovy</th>
-                        <td>panelová</td>
-                    </tr>
-                    <tr>
-                        <th>Stav budovy</th>
-                        <td>dobrý</td>
-                    </tr>
-                    <tr>
-                        <th>Vlastnictví</th>
-                        <td>osobní</td>
-                    </tr>
-                    <tr>
-                        <th>Stav bytu</th>
-                        <td>po rekonstrukci</td>
-                    </tr>
-                    <tr>
-                        <th>Užitná plocha bytu</th>
-                        <td>41 m<sup>2</sup></td>
-                    </tr>
+                    @foreach(var item in leftParam)
+                    {
+                        <tr>
+                            <th>@item.Parametr.name</th>
+                            <td>@item.value</td>
+                        </tr>
+                    }
                 </table>
 
                 <table class="info-table">
-                    <tr>
-                        <th>Počet podlaží budovy</th>
-                        <td>7 podlaží</td>
-                    </tr>
-                    <tr>
-                        <th>Podlaží bytu</th>
-                        <td>3. NP</td>
-                    </tr>
-                    <tr>
-                        <th>Vybavení</th>
-                        <td>částečně zařízený</td>
-                    </tr>
-                    <tr>
-                        <th>Lodžie</th>
-                        <td>ano</td>
-                    </tr>
-                    <tr>
-                        <th>Připojení k internetu</th>
-                        <td>UPC</td>
-                    </tr>
+                    @foreach(var item in rightParam)
+                    {
+                        <tr>
+                            <th>@item.Parametr.name</th>
+                            <td>@item.value</td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>

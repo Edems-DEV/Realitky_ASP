@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Realitky.Models;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Realitky.Models.Entity;
 using WebApplication4.Models;
 
@@ -78,11 +79,16 @@ public class RootController : BaseController
     /*--------------------------------*/
     public IActionResult Detail(int id)
     {
-        Offer offer = this.context.Offers.Find(id);
+        Offer offer = context.Offers
+            .Include(o => o.ParametrsOffers)
+            .ThenInclude(po => po.Parametr)
+            .FirstOrDefault(o => o.Id == id);
         User dealer = this.context.Users.Find(offer.IdDealer);
         
         this.ViewBag.Offer = offer;
         this.ViewBag.Dealer = dealer;
+        
+       
         
         return View();
     }
