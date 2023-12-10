@@ -58,4 +58,9 @@ public class AdminController : BaseController
 		SetIsRole();
 		return View();
 	}
+	public IActionResult Profile()
+	{
+		SetIsRole();
+		return View();
+	}
 }
