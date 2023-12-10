@@ -20,7 +20,7 @@
             {
                 <image id="pre-selected" src="./../../assets/@offer.Gallery[0].path"/>
                 <div id="pre-grid">
-                    @foreach (var image in offer.Gallery.Skip(1))
+                    @foreach (var image in offer.Gallery.Skip(1).Take(Math.Min(6, offer.Gallery.Skip(1).Count())))
                     {
                         <div class="cover" style="--url: url('./../../assets/@image.path');"></div>
                         @* <a href="" id="pre-more" class="cover dark center" style="--url: url('./../../assets/home-img-07-370x250.jpg');"> *@
