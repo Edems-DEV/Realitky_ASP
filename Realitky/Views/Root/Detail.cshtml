@@ -79,12 +79,12 @@
             <vc:dealer-component user="@ViewBag.Dealer"></vc:dealer-component>
             <div id="ask">
                 <h1>Napište nám, ozveme se</h1>
-                <form method="post">
+                <form method="post" id="this-form">
                     <input id="ask-n" type="text" placeholder="Jméno a příjmení" required>
                     <input id="ask-t" type="tel" placeholder="Telefon" required>
                     <input id="ask-e" type="email" placeholder="E-mail" required>
                     <textarea id="ask-m" placeholder="Napište nám zprávu..."></textarea>
-                    <input id="ask-b" class="btn" type="submit" value="ODESLAT POPTÁVKU">
+                    <input id="ask-b" class="btn" type="submit" value="ODESLAT POPTÁVKU" style="padding: 10px;">
                 </form>
             </div>
         </div>

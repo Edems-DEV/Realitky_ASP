@@ -388,3 +388,11 @@ footer{
   #hero{height: 450px;}
   #offers a div.cover{height: 300px;}
 } /* 2xl */
+#this-form {
+  display: grid;
+  grid-template-areas: "n n"
+      "t e"
+      "m m"
+      "b b";
+  gap: 20px;
+}

@@ -148,14 +148,7 @@ tr:nth-child(even){background-color: #fff3e5;}
 #seller-badges {display: none;}
 
 /*Ask*/
-#contact-form {
-    display: grid;
-    grid-template-areas: "n n"
-        "t e"
-        "m m"
-        "b b";
-    gap: 20px;
-}
+
 #ask-n{grid-area: n;}
 #ask-t{grid-area: t;}
 #ask-e{grid-area: e;}
@@ -228,4 +221,4 @@ tr:nth-child(even){background-color: #fff3e5;}
 @media (min-width: 1536px) {  .margin {max-width: 1536px;}
   #hero{height: 450px;}
   #offers a div.cover{height: 300px;}
-} /* 2xl */
+} /* 2xl */} /* 2xl */
