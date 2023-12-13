@@ -43,10 +43,10 @@
                 <div id="links">
                     <h1>UŽITEČNÉ ODKAZY</h1>
                     <ul>
-                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog">Byty pronájem</a></li>
-                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog">Byty prodej</a></li>
-                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog">Domy pronájem</a></li>
-                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog">Domy prodej</a></li>
+                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog" asp-route-isRent="True"  asp-route-type="0">Byty pronájem</a></li>
+                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog" asp-route-isRent="False" asp-route-type="0">Byty prodej</a></li>
+                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog" asp-route-isRent="True"  asp-route-type="1">Domy pronájem</a></li>
+                        <li><a asp-area="" asp-controller="Root" asp-action="Catalog" asp-route-isRent="False" asp-route-type="1">Domy prodej</a></li>
                     </ul>
                 </div>
                 <div id="news-2">

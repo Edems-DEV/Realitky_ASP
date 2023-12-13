@@ -46,7 +46,6 @@
             <vc:offer-component offer="@item"></vc:offer-component>
         }
     </div>
-    <div>@ViewBag.IsRent</div>
 </main>
 
 <style>
@@ -68,8 +67,12 @@
 <script>
      window.onload = function() {
         setSelectedValue('f-IsRent', '@ViewBag.IsRent', null);
-        setSelectedValue('f-type', '@ViewBag.Type', 10);
-        setSelectedValue('f-region', '@ViewBag.Region', 0);
+        setSelectedValue('f-type', '@ViewBag.Type', null);
+        setSelectedValue('f-region', '@ViewBag.Region', null);
+        setSelectedValue('f-price-min', '@ViewBag.MinP', null);
+        setSelectedValue('f-price-max', '@ViewBag.MaxP', null);
+        setSelectedValue('f-size-min', '@ViewBag.MinS', null);
+        setSelectedValue('f-size-max', '@ViewBag.MaxS', null);
     };
     function setSelectedValue(selectId, value, def) {
         var select = document.getElementById(selectId);

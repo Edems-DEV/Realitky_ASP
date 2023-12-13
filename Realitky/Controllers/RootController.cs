@@ -37,24 +37,24 @@ public class RootController : BaseController
         
         return View();
     }
-    public IActionResult Catalog(bool? isRent = null, int? type = 10, int? region = 0, int? minP = 0, int? maxP = 0, int? minS = 0, int? maxS = 0)
+    public IActionResult Catalog(bool? isRent = null, int? type = null, int? region = null, int? minP = null, int? maxP = null, int? minS = null, int? maxS = null)
     {
         var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
 
         // Apply filters only if they are not their default values
         if (isRent != null)
             offersQuery = offersQuery.Where(o => o.IsRent == isRent);
-        if (type != 10)
+        if (type != null)
             offersQuery = offersQuery.Where(o => o.IdType == type);
-        if (region != 0)
+        if (region != null)
             offersQuery = offersQuery.Where(o => o.IdRegion == region);
-        if (minP != 0)
+        if (minP != null)
             offersQuery = offersQuery.Where(o => o.price >= minP);
-        if (maxP != 0)
+        if (maxP != null)
             offersQuery = offersQuery.Where(o => o.price <= maxP);
-        if (minS != 0)
+        if (minS != null)
             offersQuery = offersQuery.Where(o => o.size >= minS);
-        if (maxS != 0)
+        if (maxS != null)
             offersQuery = offersQuery.Where(o => o.size <= maxS);
         
         //Load based on filters
