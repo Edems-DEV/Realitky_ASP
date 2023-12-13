@@ -6,8 +6,8 @@
         <select id="f-IsRent">
             <option value="" hidden>Chci</option>
             <option value="">-</option>
-            <option value="true">Pronájem</option>
-            <option value="false">Prodej</option>
+            <option value="True">Pronájem</option>
+            <option value="False">Prodej</option>
         </select>
         <select id="f-type">
             <option value="" hidden>Typu</option>
@@ -46,6 +46,7 @@
             <vc:offer-component offer="@item"></vc:offer-component>
         }
     </div>
+    <div>@ViewBag.IsRent</div>
 </main>
 
 <style>
@@ -66,6 +67,7 @@
 
 <script>
      window.onload = function() {
+        setSelectedValue('f-IsRent', '@ViewBag.IsRent', null);
         setSelectedValue('f-type', '@ViewBag.Type', 10);
         setSelectedValue('f-region', '@ViewBag.Region', 0);
     };
@@ -77,6 +79,7 @@
     }
 
     document.getElementById('search-button').addEventListener('click', function() {
+        var isRent = document.getElementById('f-IsRent').value;
         var type = document.getElementById('f-type').value;
         var region = document.getElementById('f-region').value;
         var minP = document.getElementById('f-price-min').value;
@@ -88,6 +91,7 @@
         var url = '@Url.Action("Catalog", "Root")';
         if (url.indexOf('?') === -1) url += '?'; // if no querystring
         else url += '&'; // if existing querystring
+        if (isRent != "" && isRent != null) url += '&isRent=' + encodeURIComponent(isRent);
         if (type != "" && type != null) url += '&type=' + encodeURIComponent(type);
         if (region != "" && type != null) url += '&region=' + encodeURIComponent(region);
         if (minP != "" && type != null) url += '&minP=' + encodeURIComponent(minP);

@@ -37,11 +37,13 @@ public class RootController : BaseController
         
         return View();
     }
-    public IActionResult Catalog(int type = 10, int region = 0, int minP = 0, int maxP = 0, int minS = 0, int maxS = 0)
+    public IActionResult Catalog(bool? isRent = null, int? type = 10, int? region = 0, int? minP = 0, int? maxP = 0, int? minS = 0, int? maxS = 0)
     {
         var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
 
         // Apply filters only if they are not their default values
+        if (isRent != null)
+            offersQuery = offersQuery.Where(o => o.IsRent == isRent);
         if (type != 10)
             offersQuery = offersQuery.Where(o => o.IdType == type);
         if (region != 0)
@@ -61,8 +63,9 @@ public class RootController : BaseController
         //Load data
         this.ViewBag.Regions = this.context.Region.ToList();
         this.ViewBag.Types = this.context.Type.ToList();
-        
+
         //ViewBag
+        @ViewBag.IsRent = isRent;
         @ViewBag.Type = type;
         @ViewBag.Region = region;
         @ViewBag.MinP = minP;
