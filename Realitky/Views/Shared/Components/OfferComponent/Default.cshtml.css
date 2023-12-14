@@ -72,3 +72,36 @@ p{color: black}
     margin-top: 20px;
 }
 
+/*Like button*/
+#like{
+    position: absolute; /* Position relative to the card */
+    top: 10px; /* Adjust these values as needed */
+    right: 10px;
+    z-index: 10; /* Ensures the button is above other elements */
+    
+    padding: 5px; /* Padding around the text */
+    cursor: pointer; /* Changes cursor on hover */
+
+    /*background-color: rgba(255, 255, 255, 0.2); !* Background color *!*/
+    /*border-radius: 5px; !* Rounded corners *!*/
+    /*text-decoration: none; !* Removes underline from links *!*/
+}
+#like:hover svg *{
+    fill: gold;
+    stroke: gold;
+}
+
+#like .icon{
+    width: 24px;
+    height: 24px;
+    fill:none; 
+    stroke:currentColor; 
+    stroke-width: 2;
+    stroke-linecap:round; 
+    stroke-linejoin:round;
+    viewBox: 0 0 24 24;
+}
+
+.card{
+    position: relative;
+}
