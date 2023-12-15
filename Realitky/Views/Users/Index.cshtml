@@ -28,8 +28,8 @@
                     <td>@user.phone</td>
                     @* <td>@user.IdRole</td> *@
                     <td class="text-center d-inline- g-3">
-                        <span><i class="bi bi-pencil-square"></i></span>
-                        <span><i class="bi bi-trash"></i></span>
+                        <a asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }

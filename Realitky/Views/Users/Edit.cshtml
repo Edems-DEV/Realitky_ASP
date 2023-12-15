@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Realitky.Models.Entity.User
+
+@{
+    ViewBag.Target = "Edit";
+}
+
+<h1>Úprava uživatele @Model.name</h1>
+
+<partial name="_UsersForm" />

@@ -11,4 +11,24 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\Users\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Admin\Users\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Admin\Users\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Admin\Users\_UsersForm.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Users\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Users\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Users\_UsersForm.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\Users\Create.cshtml" />
+    <UpToDateCheckInput Remove="Views\Admin\Users\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Users\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

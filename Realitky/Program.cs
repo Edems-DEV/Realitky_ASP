@@ -29,4 +29,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Root}/{action=Index}/{id?}");
 
+/*Admin*/
+app.MapControllerRoute(
+    name: "admin/users",
+    pattern: "admin/{controller=Users}/{action=Index}/{id?}");
+ 
+
 app.Run();

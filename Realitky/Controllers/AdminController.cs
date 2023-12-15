@@ -43,13 +43,13 @@ public class AdminController : BaseController
 			@ViewBag.AllOffers = context.Offers.ToList();
 		return View();
 	}
-	public IActionResult Users()
-	{
-		SetIsRole();
-		if (@ViewBag.IsAdmin) //replace with admin atribut
-			@ViewBag.AllUsers = context.Users.ToList();
-		return View();
-	}
+	// public IActionResult Users()
+	// {
+	// 	SetIsRole();
+	// 	if (@ViewBag.IsAdmin) //replace with admin atribut
+	// 		@ViewBag.AllUsers = context.Users.ToList();
+	// 	return View();
+	// }
 	public IActionResult Requests()
 	{
 		SetIsRole();
