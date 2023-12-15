@@ -39,6 +39,15 @@ public class AdminController : BaseAdminController
 			@ViewBag.AllRequests = context.Request.ToList();
 		return View();
 	}
+	public IActionResult RequestsDelete(int id) //todo: secure it (own controller)
+	{
+		Request request = this.context.Request.Find(id);
+
+		this.context.Request.Remove(request);
+		this.context.SaveChanges();
+
+		return RedirectToAction("Requests");
+	} 
 	// public IActionResult Parameters()
 	// {
 	// 	SetIsRole();

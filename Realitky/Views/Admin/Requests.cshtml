@@ -25,8 +25,7 @@
                 <td>@request.email</td>
                 <td>@request.phone</td>
                 <td class="text-center d-inline- g-3">
-                    <span><i class="bi bi-pencil-square"></i></span>
-                    <span><i class="bi bi-trash"></i></span>
+                    <a asp-controller="Admin" asp-action="RequestsDelete" asp-route-id="@request.Id"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
         }
@@ -58,8 +57,7 @@
                     <td>@request.email</td>
                     <td>@request.phone</td>
                     <td class="text-center d-inline- g-3">
-                        <span><i class="bi bi-pencil-square"></i></span>
-                        <span><i class="bi bi-trash"></i></span>
+                        <a asp-controller="Admin" asp-action="RequestsDelete" asp-route-id="@request.Id"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }
