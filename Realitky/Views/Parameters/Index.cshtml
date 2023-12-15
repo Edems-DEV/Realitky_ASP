@@ -23,8 +23,8 @@
                     <th scope="row">@counter</th>
                     <td>@parameter.name</td>
                     <td class="text-center d-inline- g-3">
-                        <span><i class="bi bi-pencil-square"></i></span>
-                        <span><i class="bi bi-trash"></i></span>
+                        <a asp-controller="Parameters" asp-action="Edit" asp-route-id="@parameter.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Parameters" asp-action="Edit" asp-route-id="@parameter.Id"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }

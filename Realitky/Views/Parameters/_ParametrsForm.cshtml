@@ -1,0 +1,13 @@
+﻿@using Realitky.Models.Entity
+@model Realitky.Models.Entity.Parametrs
+
+<form asp-action="@ViewBag.Target">
+    <div class="mb-3">
+        <label asp-for="name">Název</label>
+        <input asp-for="name" class="form-control">
+    </div>
+    
+    <div>
+        <button type="submit" class="btn btn-primary">Uložit</button>
+    </div>
+</form>
