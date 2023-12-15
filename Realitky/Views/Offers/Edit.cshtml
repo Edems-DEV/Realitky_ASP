@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Realitky.Models.Entity.Offer
+
+@{
+    ViewBag.Target = "Edit";
+}
+
+<h1>Úprava nabídky @Model.title</h1>
+
+<partial name="_OfferForm" />

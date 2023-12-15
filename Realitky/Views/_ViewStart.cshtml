@@ -7,10 +7,12 @@
     string layout = "";
     switch (controller.ToLower())
     {
-        case "admin":
-            layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-            break;
+        case "admin": //todo change
         case "users":
+        case "offers":
+        case "parametrs":
+        case "requests":
+        case "profile":
             layout = "~/Views/Shared/_LayoutAdmin.cshtml";
             break;
         default:

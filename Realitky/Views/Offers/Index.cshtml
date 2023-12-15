@@ -29,8 +29,8 @@
                 <td>@offer.address</td>
                 <td class="text-center"><input class="text-center align-middle" type="checkbox" onclick="return false;" @(offer.IsVisible ? "checked" : "")></td>
                 <td class="text-center d-inline- g-3">
-                    <span><i class="bi bi-pencil-square"></i></span>
-                    <span><i class="bi bi-trash"></i></span>
+                    <a asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
         }
@@ -66,8 +66,8 @@
                     <td>@offer.address</td>
                     <td class="text-center"><input class="text-center align-middle" type="checkbox" onclick="return false;" @(offer.IsVisible ? "checked" : "")></td>
                     <td class="text-center d-inline- g-3">
-                        <span><i class="bi bi-pencil-square"></i></span>
-                        <span><i class="bi bi-trash"></i></span>
+                        <a asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Offers" asp-action="Edit" asp-route-id="@offer.Id"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }

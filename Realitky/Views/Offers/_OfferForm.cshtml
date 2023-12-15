@@ -1,0 +1,65 @@
+﻿@using Realitky.Models.Entity
+@model Offer
+
+<form asp-action="@ViewBag.Target">
+    <div class="mb-3">
+        <label asp-for="title">Nadpis</label>
+        <input asp-for="title" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="price">Cena</label>
+        <input asp-for="price" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="summary">Souhrn</label>
+        <input asp-for="summary" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="body">Popis</label>
+        <input asp-for="body" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="thumbnail">Thumbnail</label>
+        <input asp-for="thumbnail" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="address">Adresa</label>
+        <input asp-for="address" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="size">Velikost</label>
+        <input asp-for="size" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <div class="form-check form-switch">
+            <input asp-for="IsRent" class="form-check-input" type="checkbox" role="switch">
+            <label asp-for="IsRent" class="form-check-label">Nájem</label>
+        </div>
+        <div class="form-check form-switch">
+            <input asp-for="IsVisible" class="form-check-input" type="checkbox" role="switch">
+            <label asp-for="IsVisible" class="form-check-label">Veřejné</label>
+            
+        </div>
+    </div>
+    
+    @* <div class="mb-3"> *@
+    @*     <label asp-for="IdType">Para</label> *@
+    @*     <select asp-for="IdType" class="form-control"> *@
+    @*         @foreach (Parametrs item in ViewBag.Parametrs) *@
+    @*         { *@
+    @*             <option value="@item.Id">@item.name</option> *@
+    @*         } *@
+    @*     </select> *@
+    @* </div> *@
+    
+    <div>
+        <button type="submit" class="btn btn-primary">Uložit</button>
+    </div>
+</form>

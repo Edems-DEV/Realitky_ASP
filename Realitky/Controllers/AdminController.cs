@@ -32,17 +32,18 @@ public class AdminController : BaseController
 	
     public IActionResult Index()
     {
-	    return RedirectToAction("Offers");
+	    // return RedirectToAction("Offers");
+	    return RedirectToAction("Index", "Offers");
     }
-	public IActionResult Offers()
-	{
-		SetIsRole();
-		var UserId = HttpContext.Session.GetInt32("login");
-		@ViewBag.MyOffers = context.Offers.Where(x => x.Id == UserId).ToList();
-		if (@ViewBag.IsAdmin)
-			@ViewBag.AllOffers = context.Offers.ToList();
-		return View();
-	}
+	// public IActionResult Offers()
+	// {
+	// 	SetIsRole();
+	// 	var UserId = HttpContext.Session.GetInt32("login");
+	// 	@ViewBag.MyOffers = context.Offers.Where(x => x.Id == UserId).ToList();
+	// 	if (@ViewBag.IsAdmin)
+	// 		@ViewBag.AllOffers = context.Offers.ToList();
+	// 	return View();
+	// }
 	// public IActionResult Users()
 	// {
 	// 	SetIsRole();
