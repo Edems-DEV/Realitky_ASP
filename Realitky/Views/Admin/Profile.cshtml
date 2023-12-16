@@ -2,4 +2,5 @@
     <div class="card p-3" style="max-width: 450px">
         <vc:dealer-component user="@ViewBag.User"></vc:dealer-component>
     </div>
+    <a class="ms-3 btn btn-primary" asp-controller="Admin" asp-action="ProfileEdit" asp-route-id="@ViewBag.User.Id">Upravit</a>
 </div>

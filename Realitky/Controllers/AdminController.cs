@@ -62,4 +62,28 @@ public class AdminController : BaseAdminController
 		@ViewBag.User = context.Users.Find(UserId);
 		return View();
 	}
+	
+	[HttpGet]
+	public IActionResult ProfileEdit(int id)
+	{
+		SetIsRole();
+		@ViewBag.Id = id;
+		return View(this.context.Users.Find(id));
+	}
+
+	[HttpPost]
+	public IActionResult ProfileEditEdit(User user)
+	{
+		User db = this.context.Users.Find(user.Id); //TODO: fix it (form will lost ID => cant update)
+
+		db.username = user.username;
+		db.name = user.name;
+		db.email = user.email;
+		db.phone = user.phone;
+		db.avatar = user.avatar;
+
+		this.context.SaveChanges();
+
+		return RedirectToAction("Profile");
+	}
 }
