@@ -72,7 +72,7 @@ public class AdminController : BaseAdminController
 	}
 
 	[HttpPost]
-	public IActionResult ProfileEditEdit(User user)
+	public IActionResult ProfileEdit(User user)
 	{
 		User db = this.context.Users.Find(user.Id); //TODO: fix it (form will lost ID => cant update)
 
