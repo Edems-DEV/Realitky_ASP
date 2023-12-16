@@ -26,6 +26,7 @@ public class UsersController : BaseAdminController
     [HttpPost]
     public IActionResult Create(User user)
     {
+        user.password = BCrypt.Net.BCrypt.HashPassword(user.password);
         this.context.Users.Add(user);
         this.context.SaveChanges();
 

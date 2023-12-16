@@ -22,7 +22,7 @@ public class OffersController : BaseAdminController
     {
         SetIsRole();
         var UserId = HttpContext.Session.GetInt32("login");
-        @ViewBag.MyOffers = context.Offers.Where(x => x.Id == UserId).ToList();
+        @ViewBag.MyOffers = context.Offers.Where(x => x.IdDealer == UserId).ToList();
         if (@ViewBag.IsAdmin)
             @ViewBag.AllOffers = context.Offers.ToList();
         return View();
@@ -38,10 +38,13 @@ public class OffersController : BaseAdminController
     [HttpPost]
     public IActionResult Create(Offer offer)
     {
+        var UserId = HttpContext.Session.GetInt32("login");
+        if (UserId != null)
+            offer.IdDealer = UserId;
         this.context.Offers.Add(offer);
         this.context.SaveChanges();
         
-        return RedirectToAction("Edit", new { id = offer.Id });
+        return RedirectToAction("Index");
     }
 
     [HttpGet]

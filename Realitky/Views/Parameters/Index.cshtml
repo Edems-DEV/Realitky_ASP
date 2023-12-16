@@ -24,7 +24,7 @@
                     <td>@parameter.name</td>
                     <td class="text-center d-inline- g-3">
                         <a asp-controller="Parameters" asp-action="Edit" asp-route-id="@parameter.Id"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-controller="Parameters" asp-action="Edit" asp-route-id="@parameter.Id"><i class="bi bi-trash"></i></a>
+                        <a asp-controller="Parameters" asp-action="Delete" asp-route-id="@parameter.Id"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             }

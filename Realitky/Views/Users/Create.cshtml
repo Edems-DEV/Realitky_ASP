@@ -7,4 +7,51 @@
 
 <h1>Nový uživatel</h1>
 
-<partial name="_UsersForm" />
+<form asp-action="@ViewBag.Target">
+    <div class="mb-3">
+        <label asp-for="username">Uživatelské jméno</label>
+        <input asp-for="username" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="password">Heslo</label>
+        <input asp-for="password" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="name">Celé Jméno</label>
+        <input asp-for="name" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="email">E-Mail</label>
+        <input asp-for="email" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="phone">Telefoní číslo</label>
+        <input asp-for="phone" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="avatar">Avatar</label>
+        <input asp-for="avatar" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="IdRole">Role</label>
+        <select asp-for="IdRole" class="form-control">
+            <option value="0">User</option> 
+            <option value="1">Makléř</option> 
+            <option value="2">Admin</option> 
+            @* @foreach (Role item in ViewBag.Role) *@
+            @* { *@
+            @*     <option value="@item.Id">@item.name</option> *@
+            @* } *@
+        </select>
+    </div>
+    
+    <div>
+        <button type="submit" class="btn btn-primary">Uložit</button>
+    </div>
+</form>

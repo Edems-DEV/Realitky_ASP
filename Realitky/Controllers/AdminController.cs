@@ -34,7 +34,7 @@ public class AdminController : BaseAdminController
 	{
 		SetIsRole();
 		var UserId = HttpContext.Session.GetInt32("login");
-		@ViewBag.MyRequests = context.Request.Where(x => x.Id == UserId).ToList();
+		@ViewBag.MyRequests = context.Request.Where(x => x.Id == UserId).ToList(); //todo: fix it (takes ID 1 request, not dealer connected)
 		if (@ViewBag.IsAdmin)
 			@ViewBag.AllRequests = context.Request.ToList();
 		return View();
