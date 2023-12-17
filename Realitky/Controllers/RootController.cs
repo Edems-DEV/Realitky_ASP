@@ -11,22 +11,7 @@ public class RootController : BaseController
 {
     private MyContext context = new MyContext();
     
-    public IQueryable<Offer> MapLikesToffers(int currentUserId, IQueryable<Offer> offers)
-    {
-        // Get a list of offer IDs marked as favorites by the current user
-        var favoriteOfferIds = context.Favorite
-            .Where(f => f.IdUser == currentUserId)
-            .Select(f => f.IdOffer)
-            .ToHashSet(); // Using HashSet for faster lookups
 
-        // Set the IsFavorite property for each offer
-        foreach (var offer in offers)
-        {
-            offer.IsFavorite = favoriteOfferIds.Contains(offer.Id);
-        }
-
-        return offers;
-    }
 
     public IActionResult Index(int? type = null)
     {
@@ -40,10 +25,19 @@ public class RootController : BaseController
         var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
         if (type != null)
             offersQuery = offersQuery.Where(o => o.IdType == type);
-        int show = 6;
-        this.ViewBag.Offers = offersQuery.Take(show).ToList();
         
-        @ViewBag.UserId = HttpContext.Session.GetInt32("login");
+        int show = 6;
+        offersQuery = offersQuery.Take(show);
+        
+        int? UserId = HttpContext.Session.GetInt32("login");
+        if (UserId != null)
+        {
+            int id = (int)UserId;
+            offersQuery = MapLikesToffers(id, offersQuery);
+        }
+        
+        this.ViewBag.Offers = offersQuery.ToList();
+        @ViewBag.UserId = UserId;
 
         
         return View();
@@ -153,6 +147,22 @@ public class RootController : BaseController
     }
     
     //--------------------------------
+    public IQueryable<Offer> MapLikesToffers(int currentUserId, IQueryable<Offer> offers)
+    {
+        // Get a list of offer IDs marked as favorites by the current user
+        var favoriteOfferIds = context.Favorite
+            .Where(f => f.IdUser == currentUserId)
+            .Select(f => f.IdOffer)
+            .ToHashSet(); // Using HashSet for faster lookups
+
+        // Set the IsFavorite property for each offer
+        foreach (var offer in offers)
+        {
+            offer.IsFavorite = favoriteOfferIds.Contains(offer.Id);
+        }
+
+        return offers;
+    }
     [HttpPost]
     public IActionResult Like(int idOffer, int idUser)
     {
@@ -171,6 +181,6 @@ public class RootController : BaseController
         }
         this.context.SaveChanges();
 
-        return RedirectToAction("Catalog");
+        return RedirectToAction("Catalog"); // TODO: Redirect to the same original action
     }
 }
