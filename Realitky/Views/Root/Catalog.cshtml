@@ -46,6 +46,14 @@
             <vc:offer-component offer="@item"></vc:offer-component>
         }
     </div>
+    <div>
+        @if (ViewBag.Offset > 0)
+        {
+            <a class="btn" href="@Url.Action("Catalog", "Root", new { offset = ViewBag.Offset - ViewBag.Limit, limit = ViewBag.Limit })">Previous</a>
+        }
+        
+        <a class="btn" href="@Url.Action("Catalog", "Root", new { offset = ViewBag.Offset + ViewBag.Limit, limit = ViewBag.Limit })">Next</a>
+    </div>
 </main>
 
 <style>
