@@ -10,14 +10,8 @@ namespace Realitky.Controllers;
 public class RootController : BaseController
 {
     private MyContext context = new MyContext();
-    
-    // public IActionResult GetOffers(int offset, int limit)
-    // {
-    //     var offers = context.Offers.OrderBy(o => o.Id).Skip(offset).Take(limit).ToList();
-    //     return Json(offers);
-    // }
 
-    public IActionResult Index(int type = 10) //Home //int offset = 0, int limit = 2
+    public IActionResult Index(int? type = null)
     {
         //Counters
         @ViewBag.CountByt = this.context.Offers.Where(o => o.IdType == 0).Count();
@@ -27,12 +21,10 @@ public class RootController : BaseController
         //Other
         
         var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
-        if (type != 10)
+        if (type != null)
             offersQuery = offersQuery.Where(o => o.IdType == type);
-        this.ViewBag.Offers = offersQuery.ToList();
-        // @ViewBag.Offers = this.context.Offers.Skip(offset).Take(limit).ToList();
-        // @ViewBag.Offset = offset;
-        // @ViewBag.Limit = limit;
+        int show = 6;
+        this.ViewBag.Offers = offersQuery.Take(show).ToList();
 
         
         return View();
@@ -58,7 +50,7 @@ public class RootController : BaseController
             offersQuery = offersQuery.Where(o => o.size <= maxS);
         
         // Apply pegination
-        int limit = 2; //change to at least 6 to look good
+        int limit = 6; //change to at least 6 to look good
         int page2;
         if (page == null || page < 1)
             page2 = 0;
@@ -83,7 +75,7 @@ public class RootController : BaseController
         @ViewBag.MaxS = maxS;
         
         @ViewBag.page = page;
-        @ViewBag.pages = this.context.Offers.Count() / limit;
+        @ViewBag.pages = (this.context.Offers.Count() / limit)+1;
         
         return View();
     }
