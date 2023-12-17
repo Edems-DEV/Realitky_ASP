@@ -4,6 +4,7 @@ using WebApplication4.Models;
 
 namespace Realitky.Controllers.Admin;
 
+[Authorize]
 public class UsersController : BaseAdminController
 {
     private MyContext context = new MyContext();
