@@ -10,6 +10,23 @@ namespace Realitky.Controllers;
 public class RootController : BaseController
 {
     private MyContext context = new MyContext();
+    
+    public List<Offer> MapLikesToffers(int currentUserId, List<Offer> offers)
+    {
+        // Get a list of offer IDs marked as favorites by the current user
+        var favoriteOfferIds = context.Favorite
+            .Where(f => f.IdUser == currentUserId)
+            .Select(f => f.IdOffer)
+            .ToHashSet(); // Using HashSet for faster lookups
+
+        // Set the IsFavorite property for each offer
+        foreach (var offer in offers)
+        {
+            offer.IsFavorite = favoriteOfferIds.Contains(offer.Id);
+        }
+
+        return offers;
+    }
 
     public IActionResult Index(int? type = null)
     {
@@ -60,8 +77,7 @@ public class RootController : BaseController
             page2 = page*limit;
         offersQuery = offersQuery.Skip(page2).Take(limit);
         
-        //Load based on filters
-        this.ViewBag.Offers = offersQuery.ToList();
+        
 
         //Load data
         this.ViewBag.Regions = this.context.Region.ToList();
@@ -80,6 +96,9 @@ public class RootController : BaseController
         @ViewBag.pages = (this.context.Offers.Count() / limit)+1;
         
         @ViewBag.UserId = HttpContext.Session.GetInt32("login");
+        
+        //Load based on filters
+        this.ViewBag.Offers = MapLikesToffers(@ViewBag.UserId,offersQuery.ToList());
         
         return View();
     }

@@ -1,4 +1,6 @@
-﻿namespace Realitky.Models.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Realitky.Models.Entity;
 
 public class Offer
 {
@@ -17,4 +19,6 @@ public class Offer
     public bool IsVisible {get;set;}
     public virtual List<ParametrsOffers> ParametrsOffers { get; set; }
     public virtual List<Gallery> Gallery { get; set; }
+    [NotMapped]
+    public bool IsFavorite { get; set; }
 }
