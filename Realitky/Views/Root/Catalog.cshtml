@@ -47,12 +47,14 @@
         }
     </div>
     <div>
-        @if (ViewBag.Offset > 0)
+        @if (ViewBag.page > 0)
         {
-            <a class="btn" href="@Url.Action("Catalog", "Root", new { offset = ViewBag.Offset - ViewBag.Limit, limit = ViewBag.Limit })">Previous</a>
+            <a class="btn" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page - 1 })">Previous</a>
         }
-        
-        <a class="btn" href="@Url.Action("Catalog", "Root", new { offset = ViewBag.Offset + ViewBag.Limit, limit = ViewBag.Limit })">Next</a>
+        @if (ViewBag.page < ViewBag.pages - 1)
+        {
+            <a class="btn" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page + 1 })">Next</a>
+        }
     </div>
 </main>
 

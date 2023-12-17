@@ -37,7 +37,7 @@ public class RootController : BaseController
         
         return View();
     }
-    public IActionResult Catalog(int offset = 0, int limit = 2, bool? isRent = null, int? type = null, int? region = null, int? minP = null, int? maxP = null, int? minS = null, int? maxS = null)
+    public IActionResult Catalog(int page = 0, bool? isRent = null, int? type = null, int? region = null, int? minP = null, int? maxP = null, int? minS = null, int? maxS = null)
     {
         var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
 
@@ -58,7 +58,13 @@ public class RootController : BaseController
             offersQuery = offersQuery.Where(o => o.size <= maxS);
         
         // Apply pegination
-        offersQuery = offersQuery.Skip(offset).Take(limit);
+        int limit = 2; //change to at least 6 to look good
+        int page2;
+        if (page == null || page < 1)
+            page2 = 0;
+        else
+            page2 = page*limit;
+        offersQuery = offersQuery.Skip(page2).Take(limit);
         
         //Load based on filters
         this.ViewBag.Offers = offersQuery.ToList();
@@ -76,8 +82,8 @@ public class RootController : BaseController
         @ViewBag.MinS = minS;
         @ViewBag.MaxS = maxS;
         
-        @ViewBag.Offset = offset;
-        @ViewBag.Limit = limit;
+        @ViewBag.page = page;
+        @ViewBag.pages = this.context.Offers.Count() / limit;
         
         return View();
     }
