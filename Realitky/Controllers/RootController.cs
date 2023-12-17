@@ -11,7 +11,7 @@ public class RootController : BaseController
 {
     private MyContext context = new MyContext();
     
-    public List<Offer> MapLikesToffers(int currentUserId, List<Offer> offers)
+    public IQueryable<Offer> MapLikesToffers(int currentUserId, IQueryable<Offer> offers)
     {
         // Get a list of offer IDs marked as favorites by the current user
         var favoriteOfferIds = context.Favorite
@@ -77,11 +77,21 @@ public class RootController : BaseController
             page2 = page*limit;
         offersQuery = offersQuery.Skip(page2).Take(limit);
         
+        //Map likes
+        int? UserId = HttpContext.Session.GetInt32("login");
+        if (UserId != null)
+        {
+            int id = (int)UserId;
+            offersQuery = MapLikesToffers(id, offersQuery);
+        }
         
 
         //Load data
         this.ViewBag.Regions = this.context.Region.ToList();
         this.ViewBag.Types = this.context.Type.ToList();
+        
+        //Load based on filters
+        this.ViewBag.Offers = offersQuery.ToList();
 
         //ViewBag
         @ViewBag.IsRent = isRent;
@@ -94,11 +104,8 @@ public class RootController : BaseController
         
         @ViewBag.page = page;
         @ViewBag.pages = (this.context.Offers.Count() / limit)+1;
-        
-        @ViewBag.UserId = HttpContext.Session.GetInt32("login");
-        
-        //Load based on filters
-        this.ViewBag.Offers = MapLikesToffers(@ViewBag.UserId,offersQuery.ToList());
+
+        @ViewBag.UserId = UserId;
         
         return View();
     }
@@ -143,5 +150,27 @@ public class RootController : BaseController
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    
+    //--------------------------------
+    [HttpPost]
+    public IActionResult Like(int idOffer, int idUser)
+    {
+        var a = this.context.Favorite.Where(f => f.IdOffer == idOffer && f.IdUser == idUser).FirstOrDefault();
+
+        if (a == null)
+        {
+            Favorite db = new Favorite();
+            db.IdOffer = idOffer;
+            db.IdUser = idUser;
+            this.context.Favorite.Add(db);
+        }
+        else
+        {
+            this.context.Favorite.Remove(a);
+        }
+        this.context.SaveChanges();
+
+        return RedirectToAction("Catalog");
     }
 }
