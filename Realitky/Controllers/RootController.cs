@@ -25,6 +25,8 @@ public class RootController : BaseController
             offersQuery = offersQuery.Where(o => o.IdType == type);
         int show = 6;
         this.ViewBag.Offers = offersQuery.Take(show).ToList();
+        
+        @ViewBag.UserId = HttpContext.Session.GetInt32("login");
 
         
         return View();
@@ -76,6 +78,8 @@ public class RootController : BaseController
         
         @ViewBag.page = page;
         @ViewBag.pages = (this.context.Offers.Count() / limit)+1;
+        
+        @ViewBag.UserId = HttpContext.Session.GetInt32("login");
         
         return View();
     }

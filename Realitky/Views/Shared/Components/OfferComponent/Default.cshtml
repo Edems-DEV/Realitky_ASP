@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using WebApplication4.Models
 @model Realitky.Models.Entity.Offer
 
 @{
@@ -7,13 +8,30 @@
     //IsRent
     if (@ViewBag.Offer.IsRent){ price += ",- / měsíc"; }
     else { price += " Kč";}
+    
+    bool isUser = false;
+    bool isFavorite = false;
+
+    if (@ViewBag.UserId != null)
+    {
+        isUser = true;
+
+        int UserId = @ViewBag.UserId;
+        // int OfferId = @ViewBag.Offer.Id;
+        // MyContext db = new MyContext();
+        // var a = db.Favorites.Where(x => x.IdUser == UserId && x.IdOffer == OfferId).FirstOrDefault();
+        // if (a != null) { isFavorite = true; }
+    }
 }
 <div class="card">
-    <a id="like">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon"  >
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-    </a>
+    @if(isUser)
+    {
+        <a id="like" class="@(isFavorite ? "active" : "")">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+        </a>
+    }
     <a asp-area="" asp-controller="Root" asp-action="Detail" asp-route-id="@ViewBag.Offer.Id">
         <div class="cover" style="--url: url('../../assets/@ViewBag.Offer.thumbnail');"></div>
         <div class="col">

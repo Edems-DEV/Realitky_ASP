@@ -90,6 +90,15 @@ p{color: black}
     fill: gold;
     stroke: gold;
 }
+#like:hover.active svg *{
+    fill: none;
+    stroke: black;
+}
+
+#like.active svg{
+    fill: gold;
+    stroke: gold;
+}
 
 #like .icon{
     width: 24px;

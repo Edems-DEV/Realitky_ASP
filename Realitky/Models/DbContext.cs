@@ -16,6 +16,7 @@ public class MyContext : DbContext
     public DbSet<Role> Roles { get; set; }
     public DbSet<Type> Type { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<Favorite> Favorites { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         string name = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String("ZG9sYW5za3lhZGFt"));
