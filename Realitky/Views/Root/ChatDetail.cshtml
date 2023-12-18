@@ -1,32 +1,14 @@
 ﻿@using Realitky.Models.Entity
 @{
     Request_user thread = ViewBag.Thread;
+    User user = ViewBag.User;
 }
 
-@* <h1>@thread.Offer.title</h1>
-<div class="card table-responsive px-3">
-    <table class="table align-middle">
-        <thead>
-        <th scope="col">#</th>
-        <th scope="col">Název</th>
-        </thead>
-        <tbody>
-        @foreach (Message message in thread.Messages)
-        {
-            <tr>
-                <th scope="row">@message.Id</th>
-                <td>@message.content</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div> *@
-
 <div class="container">
-    <div>
-        <div>User</div>
-        <div><input type="text" id="userInput" /></div>
-    </div>
+    @* <div> *@
+    @*     <div>User</div> *@
+    @*     <div><input type="text" id="userInput" /></div> *@
+    @* </div> *@
     <div>
         <div>Message</div>
         <div><input type="text" id="messageInput" /></div>
@@ -53,12 +35,15 @@
     //------------------ JS --------------------
     //------------------------------------------
     
+    let ThreadId = @thread.Id;
+    let UserId = @user.Id;
+    let Username = "@user.username";
+    
     document.getElementById("sendButton").disabled = true;
     
     document.getElementById("sendButton").addEventListener("click", function (event) {
-        var user = document.getElementById("userInput").value;
         var message = document.getElementById("messageInput").value;
-        SendMessage(user, message);
+        SendMessage(message);
         event.preventDefault();
     });
     
@@ -71,6 +56,7 @@
     
     // On connected
     connection.start().then(function () {
+        console.log("connected");
         document.getElementById("sendButton").disabled = false;
     }).catch(function (err) {
         return console.error(err.toString());
@@ -78,17 +64,26 @@
     
     // From server
     connection.on("ReceiveMessage", function (user, message) {
+        console.log("message received");
         var li = document.createElement("li");
         document.getElementById("messagesList").appendChild(li);
         li.textContent = `${user}: ${message}`;
     });
     
+    connection.on("ErrorMessage", function (message) {
+        console.log("error received");
+        var li = document.createElement("li");
+        document.getElementById("messagesList").appendChild(li);
+        li.textContent = `!!! ${message} !!!`;
+    });
+    
     // Client to server
     
-    function SendMessage(user, message) {
-        connection.invoke("SendMessage", user, message)
+    function SendMessage(message) {
+        connection.invoke("SendMessage", ThreadId, UserId, message)
             .catch(function (err) { return console.error(err.toString()); });
     }
+    
 </script>
 
 <style>

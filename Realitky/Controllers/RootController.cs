@@ -137,19 +137,24 @@ public class RootController : BaseController
         
         return View();
     }
-    public IActionResult ChatDetail(int? id = null)
+    public IActionResult ChatDetail(int id)
     {
         Request_user thread = this.context.Request_user.Find(id);
             thread.IncludeMessages(this.context);
             thread.IncludeOffer(this.context);
+
+        int? UserId = HttpContext.Session.GetInt32("login");
+        if (UserId == null)
+            UserId = 14; //DEBUG (anonym)
+        User curent_user = this.context.Users.Find(UserId);
         
         @ViewBag.Thread = thread;
-        int? UserId = 4; //(int)HttpContext.Session.GetInt32("login"); 
-        User curent_user = this.context.Users.Find(UserId);
         @ViewBag.User = curent_user;
 
         if (curent_user == null)
             return RedirectToAction("Index", "Login");
+        if (thread == null)
+            return RedirectToAction("Chats", "Root");
         return View();
     }
     [HttpPost]
