@@ -4,59 +4,49 @@
     User user = ViewBag.User;
 }
 
-<section class="msger">
-  <header class="msger-header">
+<main class="margin" style="display: flex; align-items: center;">
+<div class="msger">
+  <div class="msger-header">
     <div class="msger-header-title">
       <i class="fas fa-comment-alt"></i> SimpleChat
     </div>
     <div class="msger-header-options">
       <span><i class="fas fa-cog"></i></span>
     </div>
-  </header>
+  </div>
 
-  <main id="msger-chat">
-    <div class="msg left-msg">
-      <div
-       class="msg-img"
-       style="background-image: url(./assets/user-ethan-dean-80x80.jpg)"
-      ></div>
+  <div id="msger-chat">
+    @{
+      foreach (Message message in thread.Messages.OrderBy(m => m.sent_at).TakeLast(15))
+      {
+        string right = user.username == message.Sender.username ? "right" : "left";
+        <div class="msg @right-msg">
+          <div
+            class="msg-img"
+            style="background-image: url(/assets/${avatar})">
+          </div>
 
-      <div class="msg-bubble">
-        <div class="msg-info">
-          <div class="msg-info-name">BOT</div>
-          <div class="msg-info-time">12:45</div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">@message.Sender.username</div>
+              <div class="msg-info-time">@message.sent_at.ToString("hh:mm")</div>
+            </div>
+
+            <div class="msg-text">
+              @message.content
+            </div>
+          </div>
         </div>
-
-        <div class="msg-text">
-          Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
-        </div>
-      </div>
-    </div>
-
-    <div class="msg right-msg">
-      <div
-       class="msg-img"
-       style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
-      ></div>
-
-      <div class="msg-bubble">
-        <div class="msg-info">
-          <div class="msg-info-name">Sajad</div>
-          <div class="msg-info-time">12:46</div>
-        </div>
-
-        <div class="msg-text">
-          You can change your name in JS section!
-        </div>
-      </div>
-    </div>
-  </main>
+      }
+    }
+  </div>
 
   <div class="msger-inputarea">
     <input type="text" id="msger-input" placeholder="Enter your message...">
     <button type="button" id="msger-send-btn">Send</button>
   </div>
-</section>
+</div>
+</main>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 @* <script src="~/js/chat.js"></script> *@
 <script>
@@ -70,13 +60,16 @@
     function appendMessage(username, avatar, text, date){
       console.log('Append: ' + username);
       let side = "left";
-      if (username == Username)
+      let xxxxx = "";
+      if (username == Username){
           side = "rigth";
+          xxxxx = 'style="flex-direction: row-reverse;"'; //force fix but side is still broken (black text)
+      }
       let msgHTML = `
-      <div class="msg ${side}-msg">
+      <div class="msg ${side}-msg" ${xxxxx}>
         <div
          class="msg-img"
-         style="background-image: url(./assets/${avatar})"
+         style="background-image: url(/assets/${avatar})"
         ></div>
   
         <div class="msg-bubble">
@@ -153,14 +146,6 @@
     }
     
 </script>
-
-<style>
-    input {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 6px 12px;
-    }
-</style>
 
 <style>    
     .msger {
@@ -271,14 +256,14 @@
     }
     #msger-send-btn {
       margin-left: 10px;
-      background: rgb(0, 196, 65);
+      background: #ff8600;
       color: #fff;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.23s;
     }
     #msger-send-btn:hover {
-      background: rgb(0, 180, 50);
+      background: #f27f00;
     }
     
     #msger-chat {

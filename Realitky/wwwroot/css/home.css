@@ -426,3 +426,8 @@ footer{
 #ask textarea{resize: none; height: 150px;}
 #ask-b{justify-self: center; border-radius: 5px}
 #contact2{padding-bottom: 30px;}
+
+/*Chat*/
+.right-msg {
+  flex-direction: row-reverse;
+}
