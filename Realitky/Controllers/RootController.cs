@@ -141,6 +141,7 @@ public class RootController : BaseController
     {
         Request_user thread = this.context.Request_user.Find(id);
             thread.IncludeMessages(this.context);
+            thread.Messages.ForEach(m => m.IncludeSender(this.context));
             thread.IncludeOffer(this.context);
 
         int? UserId = HttpContext.Session.GetInt32("login");

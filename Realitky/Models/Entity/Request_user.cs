@@ -36,4 +36,8 @@ public class Request_user
             .Where(o => o.Id == IdOffer)
             .FirstOrDefault();
     }
+    public void IncludeUser(MyContext context)
+    {
+        User = context.Users.Find(IdUser);
+    }
 }

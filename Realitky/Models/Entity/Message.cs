@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication4.Models;
 
 namespace Realitky.Models.Entity;
 
@@ -19,4 +20,9 @@ public class Message
     
     [ForeignKey("IdSender")]
     public virtual User Sender { get; set; }
+    
+    public void IncludeSender(MyContext context)
+    {
+        Sender = context.Users.Find(IdSender);
+    }
 }

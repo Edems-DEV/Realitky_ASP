@@ -19,9 +19,9 @@
     <hr />
     <div>
         <ul id="messagesList">
-            @foreach (Message message in thread.Messages)
+            @foreach (Message message in thread.Messages.OrderBy(m => m.sent_at).TakeLast(10))
             {
-                <li>@message.IdSender : @message.content</li>
+                <li>@message.Sender.username : @message.content</li>
             }
         </ul>
     </div>
@@ -42,8 +42,11 @@
     document.getElementById("sendButton").disabled = true;
     
     document.getElementById("sendButton").addEventListener("click", function (event) {
-        var message = document.getElementById("messageInput").value;
-        SendMessage(message);
+        var input = document.getElementById("messageInput");
+        var message = input.value;
+        input.value = "";
+        if (message != null && message != "")
+            SendMessage(message);
         event.preventDefault();
     });
     
