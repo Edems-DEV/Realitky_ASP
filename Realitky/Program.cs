@@ -1,9 +1,12 @@
+using Realitky.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor(); //layouts
 builder.Services.AddSession(); //login
+builder.Services.AddSignalR(); //live chat
 
 var app = builder.Build();
 
@@ -33,6 +36,8 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "admin/users",
     pattern: "admin/{controller=Users}/{action=Index}/{id?}");
- 
+
+app.MapHub<ChatHub>("/chatHub");
+
 
 app.Run();

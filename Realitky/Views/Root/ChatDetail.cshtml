@@ -3,7 +3,7 @@
     Request_user thread = ViewBag.Thread;
 }
 
-<h1>@thread.Offer.title</h1>
+@* <h1>@thread.Offer.title</h1>
 <div class="card table-responsive px-3">
     <table class="table align-middle">
         <thead>
@@ -20,4 +20,37 @@
         }
         </tbody>
     </table>
+</div> *@
+
+<div class="container">
+    <div>
+        <div>User</div>
+        <div><input type="text" id="userInput" /></div>
+    </div>
+    <div>
+        <div>Message</div>
+        <div><input type="text" id="messageInput" /></div>
+    </div>
+    <div>
+        <input class="btn" type="button" id="sendButton" value="Send Message" />
+    </div>
+    <hr />
+    <div>
+        <ul id="messagesList">
+            @foreach (Message message in thread.Messages)
+            {
+                <li>@message.IdSender : @message.content</li>
+            }
+        </ul>
+    </div>
 </div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+<style>
+    input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 12px;
+    }
+    
+</style>
