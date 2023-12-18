@@ -144,8 +144,12 @@ public class RootController : BaseController
             thread.IncludeOffer(this.context);
         
         @ViewBag.Thread = thread;
-        //@ViewBag.UserId = HttpContext.Session.GetInt32("login");
-        
+        int? UserId = 4; //(int)HttpContext.Session.GetInt32("login"); 
+        User curent_user = this.context.Users.Find(UserId);
+        @ViewBag.User = curent_user;
+
+        if (curent_user == null)
+            return RedirectToAction("Index", "Login");
         return View();
     }
     [HttpPost]
