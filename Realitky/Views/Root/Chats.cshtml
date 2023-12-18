@@ -1,0 +1,36 @@
+﻿@using Realitky.Models.Entity
+@{
+    int counter = 0;
+    List<Request_user> Threads = ViewBag.Threads;
+}
+<h1>Vaše</h1>
+<div class="card table-responsive px-3">
+    <table class="table align-middle">
+        <thead>
+        <th scope="col">#</th>
+        <th scope="col">Název</th>
+        </thead>
+        <tbody>
+        @{ counter = 0; }
+        @foreach (Request_user thread in Threads)
+        {
+            counter++;
+
+            <tr>
+                <th scope="row">@counter</th>
+                <td>
+                    <a asp-controller="Root" asp-action="ChatDetail" asp-route-id="@thread.Id">
+                        @thread.Offer.title
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<style>
+    i:hover {
+    cursor: pointer;
+    color: #dc3545;
+}
+</style>

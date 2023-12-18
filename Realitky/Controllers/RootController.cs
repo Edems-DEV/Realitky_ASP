@@ -110,6 +110,20 @@ public class RootController : BaseController
         
         return View();
     }
+    
+    public IActionResult Chats()
+    {
+        int? userId = HttpContext.Session.GetInt32("login");
+        List<Request_user> threads = this.context.Request_user.Where(t => t.IdUser == userId).ToList();
+        foreach (var thread in threads)
+        {
+            //thread.IncludeMessages(this.context); //not needed
+            thread.IncludeOffer(this.context);
+        }
+        @ViewBag.Threads = threads;
+        
+        return View();
+    }
     /*--------------------------------*/
     public IActionResult Detail(int id)
     {
@@ -122,6 +136,16 @@ public class RootController : BaseController
         
         this.ViewBag.Offer = offer;
         this.ViewBag.Dealer = dealer;
+        
+        return View();
+    }
+    public IActionResult ChatDetail(int? id = null)
+    {
+        Request_user thread = this.context.Request_user.Find(id);
+        thread.IncludeMessages(this.context); //not needed
+        thread.IncludeOffer(this.context);
+        
+        @ViewBag.Thread = thread;
         
         return View();
     }

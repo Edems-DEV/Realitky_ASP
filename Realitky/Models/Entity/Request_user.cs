@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication4.Models;
 
 namespace Realitky.Models.Entity;
 
@@ -18,5 +19,19 @@ public class Request_user
     [ForeignKey("IdUser")]
     public virtual User User { get; set; }
     
+    [NotMapped] // 1h bug :)
     public virtual List<Message> Messages { get; set; }
+
+    public void IncludeMessages(MyContext context)
+    {
+        Messages = context.Message
+            .Where(x => x.IdThread == Id)
+            .ToList(); 
+    }
+    public void IncludeOffer(MyContext context)
+    {
+        Offer = context.Offers
+            .Where(o => o.Id == IdOffer)
+            .FirstOrDefault();
+    }
 }

@@ -21,6 +21,7 @@
                 <a class="btn-phone line-h" asp-area="" asp-controller="Root" asp-action="Catalog">KATALOG</a>
                 <a class="btn-phone line-h" asp-area="" asp-controller="Root" asp-action="Contact">KONTAKT</a>
                 @if(ViewBag.Authenticated){
+                    <a class="btn-phone line-h" asp-area="" asp-controller="Root" asp-action="Chats">POPTÁVKY</a>
                     <a class="btn-phone line-h" asp-area="" asp-controller="Login" asp-action="Logout">ODHLÁSIT</a>
                 } else {
                     <a class="btn-phone line-h" asp-area="" asp-controller="Login" asp-action="Index">PŘIHLÁSIT</a>

@@ -1,0 +1,23 @@
+﻿@using Realitky.Models.Entity
+@{
+    Request_user thread = ViewBag.Thread;
+}
+
+<h1>@thread.Offer.title</h1>
+<div class="card table-responsive px-3">
+    <table class="table align-middle">
+        <thead>
+        <th scope="col">#</th>
+        <th scope="col">Název</th>
+        </thead>
+        <tbody>
+        @foreach (Message message in thread.Messages)
+        {
+            <tr>
+                <th scope="row">@message.Id</th>
+                <td>@message.content</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

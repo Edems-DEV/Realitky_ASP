@@ -7,7 +7,7 @@ public class Message
 {
     [Key]
     public int Id {get;set;}
-    public int IdThread{get;set;}
+    public int IdThread {get;set;}
     public int IdSender {get;set;}
     public string content {get;set;}
     public DateTime sent_at {get;set;}

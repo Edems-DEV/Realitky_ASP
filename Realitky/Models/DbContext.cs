@@ -17,8 +17,8 @@ public class MyContext : DbContext
     public DbSet<Type> Type { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Favorite> Favorite { get; set; }
-    public DbSet<Request_user> Threads{ get; set; }
-    public DbSet<Message> Messages { get; set; }
+    public DbSet<Request_user> Request_user{ get; set; }
+    public DbSet<Message> Message { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         string name = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String("ZG9sYW5za3lhZGFt"));
@@ -31,6 +31,7 @@ public class MyContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //delete?
         // Define composite key for ParametrOffer
         modelBuilder.Entity<ParametrsOffers>()
             .HasKey(po => new { po.IdOffer, po.IdParametr });
