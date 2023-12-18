@@ -45,11 +45,6 @@ public class ParametersController : BaseAdminController
         SetViewbag();
 
         return View(context.Parametrs.Find(id));
-        // return View( context.Parametrs
-        //     .Include(o => o.ParametrsOffers)
-        //     .ThenInclude(po => po.Offer)
-        //     .FirstOrDefault(o => o.Id == id)
-        // );
     }
 
     [HttpPost]

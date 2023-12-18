@@ -11,25 +11,9 @@ public class AdminController : BaseAdminController
 	private MyContext context = new MyContext();
     public IActionResult Index()
     {
-	    // return RedirectToAction("Offers");
 	    return RedirectToAction("Index", "Offers");
     }
-	// public IActionResult Offers()
-	// {
-	// 	SetIsRole();
-	// 	var UserId = HttpContext.Session.GetInt32("login");
-	// 	@ViewBag.MyOffers = context.Offers.Where(x => x.Id == UserId).ToList();
-	// 	if (@ViewBag.IsAdmin)
-	// 		@ViewBag.AllOffers = context.Offers.ToList();
-	// 	return View();
-	// }
-	// public IActionResult Users()
-	// {
-	// 	SetIsRole();
-	// 	if (@ViewBag.IsAdmin) //replace with admin atribut
-	// 		@ViewBag.AllUsers = context.Users.ToList();
-	// 	return View();
-	// }
+
 	public IActionResult Requests()
 	{
 		SetIsRole();
@@ -48,13 +32,7 @@ public class AdminController : BaseAdminController
 
 		return RedirectToAction("Requests");
 	} 
-	// public IActionResult Parameters()
-	// {
-	// 	SetIsRole();
-	// 	if (@ViewBag.IsAdmin) //replace with admin atribut
-	// 		@ViewBag.AllParameters = context.Parametrs.ToList(); //link apperinces
-	// 	return View();
-	// }
+	
 	public IActionResult Profile()
 	{
 		SetIsRole();
