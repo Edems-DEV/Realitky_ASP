@@ -21,6 +21,8 @@ public class Request_user
     
     [NotMapped] // 1h bug :)
     public virtual List<Message> Messages { get; set; }
+    [NotMapped] //request / first message
+    public virtual string Text { get; set; }
 
     public void IncludeMessages(MyContext context)
     {

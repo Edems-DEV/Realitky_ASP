@@ -1,4 +1,5 @@
-﻿@model Request
+﻿
+
 @using Realitky.Models.Entity
 @{
     Offer offer = @ViewBag.Offer;
@@ -93,14 +94,14 @@
             </div>
             <div id="ask">
                 <h1>Napište nám, ozveme se</h1>
-                <form asp-action="Detail" id="this-form">
-                    <input asp-for="IdOffer" type="hidden" value="@ViewBag.Offer.Id" />
-                    <input asp-for="name" id="ask-n" type="text" placeholder="Jméno a příjmení" required>
-                    <input asp-for="phone" id="ask-t" type="tel" placeholder="Telefon" required>
-                    <input asp-for="email" id="ask-e" type="email" placeholder="E-mail" required>
-                    <textarea asp-for="text" id="ask-m" placeholder="Napište nám zprávu..."></textarea>
-                    <input type="submit" id="ask-b" class="btn" value="ODESLAT POPTÁVKU" style="padding: 10px;">
-                </form>
+                @if (@ViewBag.UserId != null)
+                {
+                    <partial name="_RequestForm2" />
+                }
+                else
+                {
+                    <partial name="_RequestForm" />
+                }
             </div>
         </div>
     </div>

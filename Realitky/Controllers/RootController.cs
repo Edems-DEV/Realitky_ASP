@@ -133,6 +133,8 @@ public class RootController : BaseController
         
         this.ViewBag.Offer = offer;
         
+        @ViewBag.UserId = HttpContext.Session.GetInt32("login");
+        
         return View();
     }
     public IActionResult ChatDetail(int? id = null)
@@ -142,11 +144,12 @@ public class RootController : BaseController
             thread.IncludeOffer(this.context);
         
         @ViewBag.Thread = thread;
+        //@ViewBag.UserId = HttpContext.Session.GetInt32("login");
         
         return View();
     }
     [HttpPost]
-    public IActionResult Detail(Request request)
+    public IActionResult Detail2(Request request)
     {
         Request db = new Request();
         db.IdOffer = request.IdOffer;
@@ -155,6 +158,31 @@ public class RootController : BaseController
         db.phone = request.phone;
         db.text = request.text;
         this.context.Request.Add(db);
+        this.context.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    public IActionResult Detail(Request_user request)
+    {
+        Request_user db = new Request_user();
+        db.IdUser = request.IdUser;
+        db.IdOffer = request.IdOffer;
+        this.context.Request_user.Add(db);
+        this.context.SaveChanges(); //generate id
+        
+        Request_user db2 = this.context.Request_user
+                            .Where(x => 
+                                   request.IdUser == x.IdUser &&
+                                   request.IdOffer == x.IdOffer)
+                            .FirstOrDefault();
+        Message msg = new Message();
+        msg.IdThread = db2.Id;
+        msg.IdSender = request.IdUser;
+        msg.content  = request.Text;
+        msg.sent_at = DateTime.Now;
+        
+        this.context.Message.Add(msg);
         this.context.SaveChanges();
 
         return RedirectToAction("Index");

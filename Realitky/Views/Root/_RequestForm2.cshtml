@@ -1,0 +1,8 @@
+﻿@model Realitky.Models.Entity.Request_user
+
+<form asp-controller="Root" asp-action="Detail" id="this-form">
+    <input asp-for="IdOffer" type="hidden" value="@ViewBag.Offer.Id" />
+    <input asp-for="IdUser" type="hidden" value="@ViewBag.UserId" />
+    <textarea asp-for="Text" id="ask-m" placeholder="Napište nám zprávu..."></textarea>
+    <input type="submit" id="ask-b" class="btn" value="ODESLAT POPTÁVKU" style="padding: 10px;">
+</form>
