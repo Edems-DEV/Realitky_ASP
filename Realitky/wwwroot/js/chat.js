@@ -1,6 +1,9 @@
 "use strict";
 
-//(ui)
+//------------------------------------------
+//------------------ JS --------------------
+//------------------------------------------
+
 document.getElementById("sendButton").disabled = true;
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
@@ -10,6 +13,8 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     event.preventDefault();
 });
 
+//------------------------------------------
+//--------------- SignalR ------------------
 //------------------------------------------
 
 //Connect
