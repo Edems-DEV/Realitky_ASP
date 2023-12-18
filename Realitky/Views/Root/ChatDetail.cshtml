@@ -8,7 +8,7 @@
 <div class="msger">
   <div class="msger-header">
     <div class="msger-header-title">
-      <i class="fas fa-comment-alt"></i> SimpleChat
+      <i class="fas fa-comment-alt"></i> @thread.Offer.title
     </div>
     <div class="msger-header-options">
       <span><i class="fas fa-cog"></i></span>
@@ -23,7 +23,7 @@
         <div class="msg @right-msg">
           <div
             class="msg-img"
-            style="background-image: url(/assets/${avatar})">
+            style="background-image: url(/assets/@message.Sender.avatar)">
           </div>
 
           <div class="msg-bubble">
@@ -108,6 +108,7 @@
         if (!message) return;
         
         SendMessage(message);
+        msgerInput.value = "";
     });
     
     //------------------------------------------
@@ -133,9 +134,7 @@
     
     connection.on("ErrorMessage", function (message) {
         console.log("error received");
-        var li = document.createElement("li");
-        document.getElementById("messagesList").appendChild(li);
-        li.textContent = `!!! ${message} !!!`;
+        appendMessage("Error", "", `!!! ${message} !!!`, "xx:xx");
     });
     
     // Client to server
