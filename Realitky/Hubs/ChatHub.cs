@@ -19,7 +19,7 @@ public class ChatHub : Hub
         return base.OnDisconnectedAsync(exception);
     }
 
-    public async Task SendMessage(int ThreadID, int UserId, string message)
+    public async Task SendMessage(int ThreadID, int UserId, string message) 
     {
         Request_user thread = db.Request_user.Find(ThreadID);
         User user = db.Users.Find(UserId);
@@ -42,7 +42,7 @@ public class ChatHub : Hub
         db.SaveChanges();
         
         Console.WriteLine("Message received");
-        await Clients.All.SendAsync("ReceiveMessage", user.username, message);
+        await Clients.All.SendAsync("ReceiveMessage", user.username, user.avatar, message, msg.sent_at.ToString("HH:mm"));
     }
     
     // Make threads groups
