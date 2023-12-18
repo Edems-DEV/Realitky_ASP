@@ -52,12 +52,11 @@ public class OffersController : BaseAdminController
     public IActionResult Edit(int id)
     {
         SetViewbag();
-        return View( context.Offers
-                .Include(o => o.ParametrsOffers)
-                .ThenInclude(po => po.Parametr)
-                .Include(o => o.Gallery) // Include the Gallery entities
-                .FirstOrDefault(o => o.Id == id)
-                );
+        Offer offer = this.context.Offers.Find(id);
+            offer.IncludeParametrs(this.context);
+            offer.IncludeGallery(this.context);
+            offer.IncludeDealer(this.context);
+        return View(offer);
     }
 
     [HttpPost]

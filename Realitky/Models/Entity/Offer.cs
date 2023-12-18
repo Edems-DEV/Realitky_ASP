@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using WebApplication4.Models;
 
 namespace Realitky.Models.Entity;
 
@@ -20,7 +22,9 @@ public class Offer
     public int? IdDealer {get;set;}
     public bool IsVisible {get;set;}
     //-------------------------------------------------
+    [NotMapped]
     public virtual List<ParametrsOffers> ParametrsOffers { get; set; }
+    [NotMapped]
     public virtual List<Gallery> Gallery { get; set; }
     [NotMapped]
     public bool IsFavorite { get; set; }
@@ -33,4 +37,30 @@ public class Offer
     [ForeignKey("IdDealer")]
     public virtual User Dealer { get; set; }
     
+    public void IncludeParametrs(MyContext context)
+    {
+        ParametrsOffers = context.ParametrsOffers
+            .Where(x => x.IdOffer == Id)
+            .Include(po => po.Parametr)
+            .ToList(); 
+    }
+    public void IncludeGallery(MyContext context)
+    {
+        Gallery = context.Gallery
+            .Where(x => x.IdOffer == Id)
+            .ToList(); 
+    }
+    public void IncludeDealer(MyContext context)
+    {
+        Dealer = context.Users
+            .Where(u => u.Id == IdDealer)
+            .FirstOrDefault();
+    }
+    
+    public void IncludeFavorite(MyContext context, int idUser)
+    {
+        IsFavorite = context.Favorite
+            .Where(f => f.IdUser == idUser && f.IdOffer == Id)
+            .FirstOrDefault() != null;
+    }
 }

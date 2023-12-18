@@ -105,7 +105,6 @@ public class RootController : BaseController
     }
     public IActionResult Contact()
     {
-        var offersQuery = this.context.Offers.Where(o => o.IsVisible).AsQueryable();
         @ViewBag.Dealers = this.context.Users.Where(u => u.IdRole == 1).ToList();
         
         return View();
@@ -127,23 +126,20 @@ public class RootController : BaseController
     /*--------------------------------*/
     public IActionResult Detail(int id)
     {
-        Offer offer = context.Offers
-            .Include(o => o.ParametrsOffers)
-            .ThenInclude(po => po.Parametr)
-            .Include(o => o.Gallery) // Include the Gallery entities
-            .FirstOrDefault(o => o.Id == id);
-        User dealer = this.context.Users.Find(offer.IdDealer);
+        Offer offer = this.context.Offers.Find(id);
+            offer.IncludeParametrs(this.context);
+            offer.IncludeGallery(this.context);
+            offer.IncludeDealer(this.context);
         
         this.ViewBag.Offer = offer;
-        this.ViewBag.Dealer = dealer;
         
         return View();
     }
     public IActionResult ChatDetail(int? id = null)
     {
         Request_user thread = this.context.Request_user.Find(id);
-        thread.IncludeMessages(this.context); //not needed
-        thread.IncludeOffer(this.context);
+            thread.IncludeMessages(this.context);
+            thread.IncludeOffer(this.context);
         
         @ViewBag.Thread = thread;
         
@@ -173,16 +169,9 @@ public class RootController : BaseController
     //--------------------------------
     public IQueryable<Offer> MapLikesToffers(int currentUserId, IQueryable<Offer> offers)
     {
-        // Get a list of offer IDs marked as favorites by the current user
-        var favoriteOfferIds = context.Favorite
-            .Where(f => f.IdUser == currentUserId)
-            .Select(f => f.IdOffer)
-            .ToHashSet(); // Using HashSet for faster lookups
-
-        // Set the IsFavorite property for each offer
         foreach (var offer in offers)
         {
-            offer.IsFavorite = favoriteOfferIds.Contains(offer.Id);
+            offer.IncludeFavorite(new MyContext(), currentUserId); //roll back? (new connection for each offer?) [Commit]
         }
 
         return offers;
