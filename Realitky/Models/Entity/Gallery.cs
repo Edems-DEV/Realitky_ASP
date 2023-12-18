@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Realitky.Models.Entity;
 
 public class Gallery
 {
+    [Key]
     public int Id {get;set;}
-    [ForeignKey("Offer")]
+    
     public int IdOffer {get;set;}
     public string path {get;set;}
     
+    //---------------------------
+    
+    [ForeignKey("IdOffer")]
     public virtual Offer Offer { get; set; }
 }

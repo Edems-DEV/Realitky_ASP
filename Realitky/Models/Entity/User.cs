@@ -1,7 +1,11 @@
-﻿namespace Realitky.Models.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Realitky.Models.Entity;
 
 public class User
 {
+    [Key]
     public int Id {get;set;}
     public int? IdRole {get;set;}
     public string? username {get;set;}
@@ -10,4 +14,9 @@ public class User
     public string? email {get;set;}
     public string? phone {get;set;}
     public string? avatar {get;set;}
+    
+    //---------------------------
+    
+    [ForeignKey("IdRole")]
+    public virtual Role Role { get; set; }
 }
