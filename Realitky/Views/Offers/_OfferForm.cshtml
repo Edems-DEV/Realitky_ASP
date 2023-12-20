@@ -2,54 +2,52 @@
 @using Type = Realitky.Models.Entity.Type
 @model Offer
 
-<form asp-action="@ViewBag.Target">
-    <div class="mb-3">
+<form asp-action="@ViewBag.Target" class="offers-form">
+    <div class="mb-3" style="grid-area: title;">
         <label asp-for="title">Nadpis</label>
         <input asp-for="title" class="form-control">
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: price;">
         <label asp-for="price">Cena</label>
         <input asp-for="price" class="form-control">
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: summary;">
         <label asp-for="summary">Souhrn</label>
-        <input asp-for="summary" class="form-control">
+        <textarea asp-for="summary" class="form-control" style="height: 17px"></textarea>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: body;">
         <label asp-for="body">Popis</label>
-        <input asp-for="body" class="form-control">
+        <textarea asp-for="body" class="form-control" style="height: 100px"></textarea>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: thumbnail;">
         <label asp-for="thumbnail">Thumbnail</label>
         <input asp-for="thumbnail" class="form-control">
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: address;">
         <label asp-for="address">Adresa</label>
         <input asp-for="address" class="form-control">
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: size;"> 
         <label asp-for="size">Velikost</label>
         <input asp-for="size" class="form-control">
     </div>
     
-    <div class="mb-3">
-        <div class="form-check form-switch">
-            <input asp-for="IsRent" class="form-check-input" type="checkbox" role="switch">
-            <label asp-for="IsRent" class="form-check-label">Nájem</label>
-        </div>
-        <div class="form-check form-switch">
-            <input asp-for="IsVisible" class="form-check-input" type="checkbox" role="switch">
-            <label asp-for="IsVisible" class="form-check-label">Veřejné</label>
-        </div>
+    <div class="form-check form-switch center" style="grid-area: isRent;">
+        <input asp-for="IsRent" class="form-check-input" type="checkbox" role="switch">
+        <label asp-for="IsRent" class="form-check-label">Nájem</label>
+    </div>
+    <div class="form-check form-switch center" style="grid-area: isPulic;">
+        <input asp-for="IsVisible" class="form-check-input" type="checkbox" role="switch">
+        <label asp-for="IsVisible" class="form-check-label">Veřejné</label>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: type;">
         <label asp-for="IdType">Typ</label>
         <select asp-for="IdType" class="form-control">
             <option value="">-</option>
@@ -60,7 +58,7 @@
         </select>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-3" style="grid-area: region;">
         <label asp-for="IdRegion">Region</label>
         <select asp-for="IdRegion" class="form-control">
             <option value="">-</option>
@@ -72,7 +70,7 @@
     </div>
     
     @* Remove? Dealer can transfer offer to other user, and see all user *@
-    <div class="mb-3"> 
+    <div class="mb-3" style="grid-area: dealer;"> 
         <label asp-for="IdDealer">Makléř</label>
         <select asp-for="IdDealer" class="form-control">
             <option value="">-</option>
@@ -86,6 +84,28 @@
     @* <vc:multi-input-componennt></vc:multi-input-componennt> *@
     
     <div>
-        <button type="submit" class="btn btn-primary">Uložit</button>
+        <button type="submit" class="btn btn-primary" style="grid-area: btn;">Uložit</button>
     </div>
 </form>
+
+
+<style>
+    .offers-form{
+      display: grid;
+      gap: 10px;
+      grid-template-areas: "title title"
+                            "price size"
+                            "region address"
+                            "type isRent"
+                            "summary thumbnail"
+                            "body body"
+                            "dealer isPulic"
+                            "btn btn";
+        
+    }
+    .center{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+</style>

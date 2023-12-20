@@ -431,3 +431,14 @@ footer{
 .right-msg {
   flex-direction: row-reverse;
 }
+
+/**/
+/*.offers-form{*/
+/*  grid-template-areas: "title title"*/
+/*                        "price size"*/
+/*                        "region address"*/
+/*                        "type isRent"*/
+/*                        "summary thumbnail"*/
+/*                        "body body"*/
+/*                        "dealer isPulic";*/
+/*}*/
