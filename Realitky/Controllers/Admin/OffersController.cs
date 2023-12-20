@@ -76,9 +76,9 @@ public class OffersController : BaseAdminController
         db.IsVisible = offer.IsVisible;
         db.IsRent = offer.IsRent;
         
-        // db.IdType = offer.IdType;
-        // db.IdRegion = offer.IdRegion;
-        // db.IdDealer = offer.IdDealer;
+        db.IdType = offer.IdType;
+        db.IdRegion = offer.IdRegion;
+        db.IdDealer = offer.IdDealer;
         //
         // db.Gallery = offer.Gallery;
         // db.ParametrsOffers = offer.ParametrsOffers;

@@ -61,8 +61,8 @@
     </div>
     
     <div class="mb-3">
-        <label asp-for="IdType">Region</label>
-        <select asp-for="IdType" class="form-control">
+        <label asp-for="IdRegion">Region</label>
+        <select asp-for="IdRegion" class="form-control">
             <option value="">-</option>
             @foreach (Region item in ViewBag.Regions)
             {
@@ -73,8 +73,8 @@
     
     @* Remove? Dealer can transfer offer to other user, and see all user *@
     <div class="mb-3"> 
-        <label asp-for="IdType">Makléř</label>
-        <select asp-for="IdType" class="form-control">
+        <label asp-for="IdDealer">Makléř</label>
+        <select asp-for="IdDealer" class="form-control">
             <option value="">-</option>
             @foreach (User item in ViewBag.Dealers)
             {
@@ -82,6 +82,8 @@
             }
         </select>
     </div>
+    
+    @* <vc:multi-input-componennt></vc:multi-input-componennt> *@
     
     <div>
         <button type="submit" class="btn btn-primary">Uložit</button>
