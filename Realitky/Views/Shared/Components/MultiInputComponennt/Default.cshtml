@@ -1,0 +1,55 @@
+﻿<div class="container g-0">
+    <label for="input1" class="form-label">@ViewBag.Label</label>
+    <div class="input-group mb-2">
+        <input
+            type="text"
+            class="form-control"
+            id="input1"
+            (keyup.enter)="addItem(); newItem = ''"
+        />
+        <button class="btn btn-outline-secondary" type="button" (click)="addItem()">
+            +
+        </button>
+    </div>
+    <ul class="list-group">
+        @foreach(string item in @ViewBag.Items){
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>@item</span>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    onclick="deleteItem(@item)"></button>
+            </li>
+        }
+    </ul>
+</div>
+
+<script>
+      items = [];
+      newItem = '';
+    
+      function addItem() {
+        if (this.newItem !== '') {
+          let temp = { id: 0, name: this.newItem };
+          this.items.push(temp);
+          this.formField.setValue(this.items); //not efficient
+          this.newItem = '';
+        }
+      }
+    
+      function deleteItem(item) {
+        const index = this.items.indexOf(item);
+        if (index !== -1) {
+          this.items.splice(index, 1);
+          this.formField.setValue(this.items); //not efficient
+        }
+      }
+      
+      document.getElementById('input1').addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+              addItem();
+          }
+      });
+</script>

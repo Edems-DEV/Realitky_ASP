@@ -17,7 +17,7 @@ public class OffersController : BaseAdminController
         @ViewBag.Parametrs = context.Parametrs.ToList();
         @ViewBag.Types = context.Type.ToList();
         @ViewBag.Regions = context.Region.ToList();
-        @ViewBag.Dealers = context.Users.ToList(); //dealers cant change or should transfer?
+        @ViewBag.Dealers = context.Users.Where(x => x.IdRole >= 1).ToList(); //dealers cant change or should transfer?
     }
     public IActionResult Index()
     {
