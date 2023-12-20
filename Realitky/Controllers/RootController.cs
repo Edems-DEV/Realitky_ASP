@@ -97,7 +97,7 @@ public class RootController : BaseController
         @ViewBag.MaxS = maxS;
         
         @ViewBag.page = page;
-        @ViewBag.pages = (this.context.Offers.Count() / limit)+1;
+        @ViewBag.pages = (offersQuery.ToList().Count() / limit)+1;
 
         @ViewBag.UserId = UserId;
         

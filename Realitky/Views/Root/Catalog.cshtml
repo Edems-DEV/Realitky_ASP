@@ -2,43 +2,49 @@
 @using Realitky.Models.Entity
 
 <main class="margin">
-    <div>
-        <select id="f-IsRent">
-            <option value="" hidden>Chci</option>
-            <option value="">-</option>
-            <option value="True">Pronájem</option>
-            <option value="False">Prodej</option>
-        </select>
-        <select id="f-type">
-            <option value="" hidden>Typu</option>
-            <option value="">-</option>
-            @foreach (Type item in ViewBag.Types)
-            {
-                <option value="@item.Id">@item.name</option>
-            }
-        </select>
-        <select id="f-region">
-            <option value="" hidden>v kraji</option>
-            <option value="">-</option>
-            @foreach (Region item in ViewBag.Regions)
-            {
-                <option value="@item.Id">@item.name</option>
-            }
-        </select>
-        <div>
-            <span>Cena:</span>
-            <input type="number" min="0" id="f-price-min" placeholder="0" value="@(ViewBag.MinP != 0 ? ViewBag.MinP : "")">
-            <span>-</span>
-            <input type="number" min="0" id="f-price-max" placeholder="∞" value="@(ViewBag.MaxP != 0 ? ViewBag.MaxP : "")">
-        </div>
-        <div>
-            <span>Plocha:</span>
-            <input type="number" min="0" id="f-size-min" placeholder="0" value="@(ViewBag.MinS != 0 ? ViewBag.MinS : "")">
-            <span>-</span>
-            <input type="number" min="0" id="f-size-max" placeholder="∞" value="@(ViewBag.MaxS != 0 ? ViewBag.MaxS : "")">
+    <div id="filter">
+        <div class="col" style="gap: 10px;">
+            <div>
+                <select id="f-IsRent">
+                    <option value="" hidden>Chci</option>
+                    <option value="">-</option>
+                    <option value="True">Pronájem</option>
+                    <option value="False">Prodej</option>
+                </select>
+                <select id="f-type">
+                    <option value="" hidden>Typu</option>
+                    <option value="">-</option>
+                    @foreach (Type item in ViewBag.Types)
+                    {
+                        <option value="@item.Id">@item.name</option>
+                    }
+                </select>
+                <select id="f-region">
+                    <option value="" hidden>v kraji</option>
+                    <option value="">-</option>
+                    @foreach (Region item in ViewBag.Regions)
+                    {
+                        <option value="@item.Id">@item.name</option>
+                    }
+                </select>
+            </div>
+            <div class="row" style="justify-content: left; gap: 15px;">
+                <div>
+                    <span>Cena:</span>
+                    <input type="number" min="0" id="f-price-min" placeholder="0" value="@(ViewBag.MinP != 0 ? ViewBag.MinP : "")">
+                    <span>-</span>
+                    <input type="number" min="0" id="f-price-max" placeholder="∞" value="@(ViewBag.MaxP != 0 ? ViewBag.MaxP : "")">
+                </div>
+                <div>
+                    <span>Plocha:</span>
+                    <input type="number" min="0" id="f-size-min" placeholder="0" value="@(ViewBag.MinS != 0 ? ViewBag.MinS : "")">
+                    <span>-</span>
+                    <input type="number" min="0" id="f-size-max" placeholder="∞" value="@(ViewBag.MaxS != 0 ? ViewBag.MaxS : "")">
+                </div>
+            </div>
         </div>
 
-        <a id="search-button" class="btn">Search</a>
+        <a id="search-button" class="btn" style="display: flex; align-items: center;">Search</a>
     </div>
     <div id="offers" style="margin: 10px 20px;">
         @foreach (Offer item in ViewBag.Offers)
@@ -46,15 +52,15 @@
             <vc:offer-component offer="@item"></vc:offer-component>
         }
     </div>
-    <div>
-        @if (ViewBag.page > 0)
-        {
-            <a class="btn" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page - 1 })">Previous</a>
-        }
-        @if (ViewBag.page < ViewBag.pages - 1)
-        {
-            <a class="btn" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page + 1 })">Next</a>
-        }
+    @{
+        bool pre = ViewBag.page > 0;
+        bool next = ViewBag.page < ViewBag.pages - 1;
+    }
+    <div id="pegination" style="@(!pre && !next ? "display: none;" : "")">
+        
+        <a class="btn @(!pre ? "isDisabled" : "")" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page - 1 })">Previous</a>
+        
+        <a class="btn @(!next ? "isDisabled " : "")" href="@Url.Action("Catalog", "Root", new { page = ViewBag.page + 1 })">Next</a>
     </div>
 </main>
 
@@ -71,6 +77,34 @@
         width: 69px;
         padding: 3px;
         border: solid 1px #ccc;
+    }
+    #filter {
+        /*background: hsl(0, 0%, 90%);*/
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        gap: 10px;
+    
+        display: flex;
+        width: fit-content;
+        margin-left: 15px;  /*Not great but i dont know how else to fix it*/
+        
+        padding: 8px;
+        border-radius: 5px;
+    }
+    #pegination{
+        display:flex; 
+        justify-content: end; 
+        gap: 10px;
+        
+        margin-bottom:10px; 
+        padding:10px; /*Profi hack, don't judge :D*/
+        
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    
+    .isDisabled {
+      /*display: none;*/ /*If you want to move*/
+      visibility: hidden;
     }
 </style>
 
