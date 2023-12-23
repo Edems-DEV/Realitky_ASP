@@ -45,7 +45,7 @@ Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
 </details>
 <details> <summary>→ Catalog</summary>
  
-![Catalog](https://i.imgur.com/FCrpvTY.png)
+![Catalog](https://i.imgur.com/ut1LQ6N.png)
 
 </details>
 <details> <summary>↳ Detail</summary>
@@ -75,7 +75,7 @@ Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
 
 <details> <summary>📝 Form</summary>
  
-![Form](https://i.imgur.com/NGcCJjz.png)
+![Form](https://i.imgur.com/4tGF9XM.png)
 
 </details>
 
