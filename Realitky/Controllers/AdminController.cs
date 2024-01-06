@@ -29,13 +29,9 @@ public class AdminController : BaseAdminController
 		}
 		
 		List<Request_user> threads = this.context.Request_user.ToList(); //TODO: Optimize (takes all)
-		foreach (var thread in threads)
-		{
-			thread.IncludeOffer(this.context);
-			thread.IncludeUser(this.context);
-		}
-		
+		threads.ForEach(x => x.IncludeOffer(context));
 		@ViewBag.Threads = threads.Where(x => x.Offer.IdDealer == UserId).ToList(); //filter to users only
+		threads.ForEach(x => x.IncludeUser(context));
 		
 		return View();
 	}
