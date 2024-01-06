@@ -84,6 +84,7 @@
             <th scope="col">#</th>
             <th scope="col">Nabídka</th>
             <th scope="col">Odesilatel</th>
+            <th scope="col" class="text-center align-middle">Akce</th>
         </thead>
         <tbody>
         @{counter = 0;}
@@ -100,6 +101,9 @@
                 </td>
                 <td>
                     @thread.User.name (@thread.User.username)
+                </td>
+                <td class="text-center d-inline- g-3">
+                    <a asp-controller="Admin" asp-action="ThreadDelete" asp-route-id="@thread.Id"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
         }

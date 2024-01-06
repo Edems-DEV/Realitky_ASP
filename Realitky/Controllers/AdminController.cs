@@ -35,6 +35,15 @@ public class AdminController : BaseAdminController
 		
 		return View();
 	}
+	public IActionResult ThreadDelete(int id) //todo: secure it (own controller)
+	{
+		Request_user request = this.context.Request_user.Find(id);
+
+		this.context.Request_user.Remove(request);
+		this.context.SaveChanges();
+
+		return RedirectToAction("Requests");
+	} 
 	public IActionResult RequestsDelete(int id) //todo: secure it (own controller)
 	{
 		Request request = this.context.Request.Find(id);
