@@ -18,15 +18,25 @@ public class AdminController : BaseAdminController
 	{
 		SetIsRole();
 		var UserId = HttpContext.Session.GetInt32("login");
-		var aaa = context.Request.Where(x => x.Id == UserId); //todo: fix it (takes ID 1 request, not dealer connected)
-		aaa.ToList().ForEach(x => x.IncludeOffer(context));
+		var aaa = context.Request.Where(x => x.Id == UserId).ToList(); //todo: fix it (takes ID 1 request, not dealer connected)
+		aaa.ForEach(x => x.IncludeOffer(context));
 		@ViewBag.MyRequests = aaa;
 		if (@ViewBag.IsAdmin)
 		{
 			var bbb = context.Request.ToList();
-			bbb.ToList().ForEach(x => x.IncludeOffer(context));
+			bbb.ForEach(x => x.IncludeOffer(context));
 			@ViewBag.AllRequests = bbb;
 		}
+		
+		List<Request_user> threads = this.context.Request_user.ToList(); //TODO: Optimize (takes all)
+		foreach (var thread in threads)
+		{
+			thread.IncludeOffer(this.context);
+			thread.IncludeUser(this.context);
+		}
+		
+		@ViewBag.Threads = threads.Where(x => x.Offer.IdDealer == UserId).ToList(); //filter to users only
+		
 		return View();
 	}
 	public IActionResult RequestsDelete(int id) //todo: secure it (own controller)

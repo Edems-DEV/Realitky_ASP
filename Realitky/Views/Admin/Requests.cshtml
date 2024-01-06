@@ -73,6 +73,44 @@
         </table>
     </div>
 }
+
+<hr/>
+
+<h2>Chaty</h2>
+
+<div class="card table-responsive px-3">
+    <table class="table align-middle">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Nabídka</th>
+            <th scope="col">Odesilatel</th>
+        </thead>
+        <tbody>
+        @{counter = 0;}
+        @foreach (Request_user thread in @ViewBag.Threads)
+        {
+            counter++;
+            
+            <tr onclick="rowClicked('@Url.Action("ChatDetail", "Root", new { id = thread.Id })')">
+                <th scope="row">@counter</th>
+                <td>
+                    <a asp-controller="Root" asp-action="Detail" asp-route-id="@thread.IdOffer">
+                        @thread.Offer.title
+                    </a>
+                </td>
+                <td>
+                    @thread.User.name
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<script>
+    function rowClicked(url) {
+        window.location.href = url;
+    }
+</script>
 <style>
     i:hover {
         cursor: pointer;
