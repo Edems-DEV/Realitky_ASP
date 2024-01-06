@@ -17,10 +17,10 @@
             {
                 counter++;
 
-                <tr>
+                <tr onclick="rowClicked('@Url.Action("ChatDetail", "Root", new { id = thread.Id })')">
                     <th scope="row">@counter</th>
                     <td>
-                        <a asp-controller="Root" asp-action="ChatDetail" asp-route-id="@thread.Id">
+                        <a asp-controller="Root" asp-action="Detail" asp-route-id="@thread.IdOffer">
                             @thread.Offer.title
                         </a>
                     </td>
@@ -35,6 +35,11 @@
         </table>
     </div>
 </main>
+<script>
+    function rowClicked(url) {
+        window.location.href = url;
+    }
+</script>
 <style>
     .card {
         align-self: center;
