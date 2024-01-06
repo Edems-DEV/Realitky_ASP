@@ -54,7 +54,7 @@
     </div>
     @{
         bool pre = ViewBag.page > 0;
-        bool next = ViewBag.page < ViewBag.pages - 1;
+        bool next = ViewBag.page < ViewBag.pages;
     }
     <div id="pegination" style="@(!pre && !next ? "display: none;" : "")">
         
