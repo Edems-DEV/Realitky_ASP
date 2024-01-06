@@ -118,6 +118,7 @@ public class RootController : BaseController
         {
             //thread.IncludeMessages(this.context); //not needed
             thread.IncludeOffer(this.context);
+            thread.Offer.IncludeDealer(this.context);
         }
         @ViewBag.Threads = threads;
         

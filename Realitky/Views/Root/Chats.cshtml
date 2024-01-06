@@ -3,34 +3,77 @@
     int counter = 0;
     List<Request_user> Threads = ViewBag.Threads;
 }
-<h1>Vaše</h1>
-<div class="card table-responsive px-3">
-    <table class="table align-middle">
-        <thead>
-        <th scope="col">#</th>
-        <th scope="col">Název</th>
-        </thead>
-        <tbody>
-        @{ counter = 0; }
-        @foreach (Request_user thread in Threads)
-        {
-            counter++;
+<main class="margin">
+    <div class="card table-responsive px-3">
+        <table class="table align-middle">
+            <thead>
+            <th scope="col">#</th>
+            <th scope="col">Poptávka</th>
+            <th scope="col">Makléř</th>
+            </thead>
+            <tbody>
+            @{ counter = 0; }
+            @foreach (Request_user thread in Threads)
+            {
+                counter++;
 
-            <tr>
-                <th scope="row">@counter</th>
-                <td>
-                    <a asp-controller="Root" asp-action="ChatDetail" asp-route-id="@thread.Id">
-                        @thread.Offer.title
-                    </a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+                <tr>
+                    <th scope="row">@counter</th>
+                    <td>
+                        <a asp-controller="Root" asp-action="ChatDetail" asp-route-id="@thread.Id">
+                            @thread.Offer.title
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Root" asp-action="ChatDetail" asp-route-id="@thread.Id">
+                            @thread.Offer.Dealer.name
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</main>
 <style>
-    i:hover {
-    cursor: pointer;
-    color: #dc3545;
-}
+    .card {
+        align-self: center;
+        width: 100%;
+        background-color: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+    }
+    
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .table th,
+    .table td {
+        padding: 10px; 
+        text-align: left; 
+        border-bottom: 1px solid #e0e0e0; 
+    }
+    
+    .table thead th {
+        background-color: #e9ecef; 
+        color: #495057; 
+        font-weight: bold; 
+    }
+    
+    .table tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+    
+    .table a {
+        /*color: #007bff; */
+        text-decoration: none; 
+    }
+    
+    .table a:hover {
+        text-decoration: underline;
+    }
 </style>
