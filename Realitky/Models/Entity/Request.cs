@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication4.Models;
 
 namespace Realitky.Models.Entity;
 
@@ -17,4 +18,12 @@ public class Request
     
     [ForeignKey("IdOffer")]
     public virtual Offer Offer { get; set; }
+    
+    //---------------------------
+    public void IncludeOffer(MyContext context)
+    {
+        Offer = context.Offers
+            .Where(u => u.Id == IdOffer)
+            .FirstOrDefault();
+    }
 }

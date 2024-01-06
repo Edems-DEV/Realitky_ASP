@@ -9,6 +9,7 @@
     <table class="table align-middle">
         <thead>
             <th scope="col">#</th>
+            <th scope="col">Nabídka</th>
             <th scope="col">Odesilatel</th>
             <th scope="col">E-Mail</th>
             <th scope="col">Telefon</th>
@@ -21,6 +22,9 @@
             counter++;
             <tr>
                 <th scope="row">@counter</th>
+                <td>
+                    <a asp-controller="Root" asp-action="Detail" asp-route-id="@request.Offer.Id">@request.Offer.title</a>
+                </td>
                 <td>@request.name</td>
                 <td>@request.email</td>
                 <td>@request.phone</td>
@@ -40,7 +44,8 @@
     <div class="card table-responsive px-3">
         <table class="table align-middle">
             <thead>
-                <th scope="col">#</th>
+            <th scope="col">#</th>
+                <th scope="col">Nabídka</th>
                 <th scope="col">Odesilatel</th>
                 <th scope="col">E-Mail</th>
                 <th scope="col">Telefon</th>
@@ -53,6 +58,9 @@
                 counter++;
                 <tr>
                     <th scope="row">@counter</th>
+                    <td>
+                        <a asp-controller="Root" asp-action="Detail" asp-route-id="@request.Offer.Id">@request.Offer.title</a>
+                    </td>
                     <td>@request.name</td>
                     <td>@request.email</td>
                     <td>@request.phone</td>

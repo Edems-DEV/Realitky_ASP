@@ -18,9 +18,15 @@ public class AdminController : BaseAdminController
 	{
 		SetIsRole();
 		var UserId = HttpContext.Session.GetInt32("login");
-		@ViewBag.MyRequests = context.Request.Where(x => x.Id == UserId).ToList(); //todo: fix it (takes ID 1 request, not dealer connected)
+		var aaa = context.Request.Where(x => x.Id == UserId); //todo: fix it (takes ID 1 request, not dealer connected)
+		aaa.ToList().ForEach(x => x.IncludeOffer(context));
+		@ViewBag.MyRequests = aaa;
 		if (@ViewBag.IsAdmin)
-			@ViewBag.AllRequests = context.Request.ToList();
+		{
+			var bbb = context.Request.ToList();
+			bbb.ToList().ForEach(x => x.IncludeOffer(context));
+			@ViewBag.AllRequests = bbb;
+		}
 		return View();
 	}
 	public IActionResult RequestsDelete(int id) //todo: secure it (own controller)
