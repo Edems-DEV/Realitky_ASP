@@ -17,18 +17,14 @@ public class MyContext : DbContext
     public DbSet<Type> Type { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Favorite> Favorite { get; set; }
-    public DbSet<Request_user> Request_user{ get; set; }
+    public DbSet<Request_user> Request_user { get; set; }
     public DbSet<Message> Message { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         string name = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String("ZG9sYW5za3lhZGFt"));
-        optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;" +
-                                $"database=4b2_{name}_db1;" +
-                                $"user={name};" +
-                                "password=123456;" +
-                                "SslMode=none");
+        optionsBuilder.UseMySQL("server=database;database=myDb;user=root;Password=Escargot3-Ransack-Recess");
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //delete?

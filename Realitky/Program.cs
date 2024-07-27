@@ -2,6 +2,12 @@ using Realitky.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure the application to listen on port 5216
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5216); // Listen on port 5216
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor(); //layouts
