@@ -4,13 +4,15 @@
 
 🧮 [Database](https://dbdiagram.io/d/%F0%9F%94%B4Realitky-Public-6582ef7556d8064ca063bce4)
 
----
 
 ## Welcome
 
 Realitky je webová aplikace vytvořená v jazyce c# s architekturou MVC.
 Obsahuje 2 časti. Frondend pro zakazniky a backend pro administrátory a makléře. 
 Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
+
+## Setup
+- Powershell: `iwr -useb https://raw.githubusercontent.com/Edems-DEV/Realitky_ASP/main/setup.ps1 | iex`
 
 ---
 
@@ -23,8 +25,6 @@ Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
   -  Like button
   -  Editebale profiles
   -  ...
-
- ---
 
  ## Showcase
 
