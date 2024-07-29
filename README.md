@@ -52,6 +52,8 @@ Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
  
 ![Detail](https://i.imgur.com/CNY8KER.png)
 
+
+
 </details>
 <details> <summary>🔒 Chat</summary>
  
@@ -79,5 +81,7 @@ Realitky maji mnoho zajímavých funkcí které můžete nalézt níže.
 
 </details>
 
-
 </details>
+
+
+[( 🎥 )](https://www.youtube.com/watch?v=COh1ZkbpsAY)
